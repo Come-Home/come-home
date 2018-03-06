@@ -2,3 +2,12 @@ body {
     background: url("images/paws.gif");
 };
 
+#petImg {
+	width: 200px;
+	height: 200px;
+}
+
+.petInfo {
+	margin: 50px 100px;
+}
+
