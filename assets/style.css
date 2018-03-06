@@ -1,4 +1,24 @@
 body {
     background: url("images/paws.gif");
-};
 
+}
+
+
+ .brand-logo{
+  width: 250px;
+  float: left;
+  text-align: center;
+  line-height: 70px;
+  font-weight: 700;
+  font-size: 30px;
+ }  
+
+nav a {
+	margin-right: 20px;
+  height: 90px;
+  float: right;
+  text-align: center;
+  line-height: 90px;
+  font-weight: 400;
+  font-size: 25px;
+}
