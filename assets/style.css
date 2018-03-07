@@ -1,6 +1,5 @@
 body {
     background: url("images/paws.gif");
-
 }
 
 
@@ -21,4 +20,30 @@ nav a {
   line-height: 90px;
   font-weight: 400;
   font-size: 25px;
+}
+
+h4 {
+	color: yellow darken-2;
+}
+
+.side-nav li a {
+	float: none;
+	width: 100%;
+}
+
+.cards {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin: 5% 15%;
+}
+
+.card {
+
+    flex: 0 1 45%;
+}
+
+.text-contant {
+	text-align: center;
+	background:  #fff8e1;
 }
