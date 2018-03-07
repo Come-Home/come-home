@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Come Home</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+    <nav class="nav-extended">
+        <div class="nav-wrapper light-green darken-3">
+            <a href="index.html" class="brand-logo">Come Home</a>
+            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="lostForm.html">Report a lost pet</a></li>
+                <li><a href="lostList.html">Found a lost pet</a></li>
+                <li><a href="breedType">Breeds</a></li>
+                <li><a href="MapView.html">Map</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>
+            </ul>
+            <ul class="side-nav orange lighten-5" id="mobile-demo">
+                <li><a href="index.html">Come Home</a></li>
+                <li><a href="lostForm.html">Report a lost pet</a></li>
+                <li><a href="lostList.html">Found a lost pet</a></li>
+                <li><a href="breedType">Breeds</a></li>
+                <li><a href="MapView.html">Map</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container white">
+        <div class="row">
+            <h5>Dog Info</h5>
+                Select image of your dog to upload:
+                <input type="file" id="input">
+                <input type="submit" value="Upload Image" name="submit">
+            </form>
+        </div>
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Name of the pet" id="petNameInput" type="text">
+                        <label for="petNameInput">Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="petAgeInput" type="text">
+                        <label for="petAgeInput">Age</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <select>
+                            <option value="" disabled selected>Breed options</option>
+                            <option value="1">Option 1</option>
+                        </select>
+                        <label>Materialize Select</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="petDateLostInput" type="date" class="validate">
+                        <label for="petDateLostInput"></label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="comment" type="text" class="validate">
+                        <label for="comment">Tell us more about our pet</label>
+                    </div>
+                </div>
+                <h5>Owner Contect Info</h5>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <input placeholder="Placeholder" id="first_name" type="text" class="validate">
+                        <label for="first_name">First Name</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <input id="last_name" type="text" class="validate">
+                        <label for="last_name">Last Name</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">account_circle</i>
+                        <input id="ownerEmailInput" type="email" class="validate">
+                        <label for="ownerEmailInput">email</label>
+                    </div>
+                    <div class="input-field col s6">
+                        <i class="material-icons prefix">phone</i>
+                        <input id="icon_telephone" type="tel" class="validate">
+                        <label for="icon_telephone">Telephone</label>
+                    </div>
+                </div>
+                <h5>Address in Which the Dog was Last Seen</h5>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="lostAddInput" type="text" class="validate">
+                        <label for="lostAddInput">Address</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <button class="btn waves-effect waves-light yellow darken-2" type="submit" name="action">Submit
+                        <i class="material-icons right">send</i>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src=“https://www.gstatic.com/firebasejs/4.10.1/firebase.js“></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+        $("select").material_select();
+    })
+    $(document).ready(function() {
+        $(".button-collapse").sideNav();
+    })
+    </script>
+    <!-- <script src="assets/javascript/magic.js"></script> -->
+</body>
+
+</html>

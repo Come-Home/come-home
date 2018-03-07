@@ -4,32 +4,94 @@
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Come Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
-    <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-    <script src=“https://www.gstatic.com/firebasejs/4.10.1/firebase.js“></script>
-    <script src="assets/javascript/magic.js"></script>
-
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
 
-        <nav>
-            <div class="nav-wrapper light-green darken-3" >
-                <a href="#" class="brand-logo">Come Home</a>
+    <body>
+        <nav class="nav-extended">
+            <div class="nav-wrapper light-green darken-3">
+                <a href="index.html" class="brand-logo">Come Home</a>
+                <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="lostForm.html">Report a lost pet</a></li>
                     <li><a href="lostList.html">Found a lost pet</a></li>
+                    <li><a href="breedType">Breeds</a></li>
+                    <li><a href="MapView.html">Map</a></li>
+                    <li><a href="aboutUs.html">About Us</a></li>
+                </ul>
+                <ul class="side-nav orange lighten-5" id="mobile-demo">
+                    <li><a href="index.html">Come Home</a></li>
+                    <li><a href="lostForm.html">Report a lost pet</a></li>
+                    <li><a href="lostList.html">Found a lost pet</a></li>
+                    <li><a href="breedType">Breeds</a></li>
                     <li><a href="MapView.html">Map</a></li>
                     <li><a href="aboutUs.html">About Us</a></li>
                 </ul>
             </div>
         </nav>
-        <div class="container">
+        <div class="row">
+            <div class="col s12 text-contant">
+                <div class="row">
+                    <div clas="input-field col s12 card">
+                        <h3>Come Home</h3>
+                        <p class="flow-text">This is a data base aimed to reconnect owners with their dog.
+                            <br>Advisory: If you found a dog and their owners, always arrange a meeting in a public place during the day.</p>
+                    </div>
+                </div>
+            </div>
         </div>
-</body>
+ 
+            <div class="row">
+              <section class="cards">
+                <div class="input-field col s4 card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/images/sad-person.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">Report a lost pet<i class="material-icons right">more_vert</i></span>
+                        <p><a href="lostForm.html">Take me to the form</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">Report a lost pet<i class="material-icons right">close</i></span>
+                        <p>We are sorry to hear you can not find your pet. Lets do something about it.<br>You should fill the report in the link with the needed information to recognize our animal and your up to data contact information.</p>
+                    </div>
+                </div>
+                <div class="input-field col s4 card">
+                    <div class="card-image waves-effect waves-block waves-light">
+                        <img class="activator" src="assets/images/pet and owners.jpg">
+                    </div>
+                    <div class="card-content">
+                        <span class="card-title activator grey-text text-darken-4">I found a pet<i class="material-icons right">more_vert</i></span>
+                        <p><a href="lostList.html">List of lost pets</a></p>
+                        <p><a href="MapView.html">Map</a></p>
+                    </div>
+                    <div class="card-reveal">
+                        <span class="card-title grey-text text-darken-4">I found a pet<i class="material-icons right">close</i></span>
+                        <p>We created an easy database for you to look through to see if you can find the owners of the lost pet. The rows of the table open for additional information. If you do not know the breed of the dog you can look through our breed page.<br>If you can not find the dog in the database please use the provided link to find a shelter near you.</p>
+                    </div>
+                </div>
+              </section>
+            </div>
+
+        </div>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+        <script src=“https://www.gstatic.com/firebasejs/4.10.1/firebase.js“></script>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $("select").material_select();
+        })
+        $(document).ready(function() {
+            $(".button-collapse").sideNav();
+        })
+        </script>
+        <!-- <script src="assets/javascript/magic.js"></script> -->
+    </body>
 
 </html>
