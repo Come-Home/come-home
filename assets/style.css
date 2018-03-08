@@ -1,6 +1,53 @@
 body {
     background: url("images/paws.gif");
-};
+}
+
+
+
+ .brand-logo{
+  width: 250px;
+  float: left;
+  text-align: center;
+  line-height: 70px;
+  font-weight: 700;
+  font-size: 30px;
+ }  
+
+nav a {
+	margin-right: 20px;
+  height: 90px;
+  float: right;
+  text-align: center;
+  line-height: 90px;
+  font-weight: 400;
+  font-size: 25px;
+}
+
+h4 {
+	color: yellow darken-2;
+}
+
+.side-nav li a {
+	float: none;
+	width: 100%;
+}
+
+.cards {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin: 5% 15%;
+}
+
+.card {
+
+    flex: 0 1 45%;
+}
+
+.text-contant {
+	text-align: center;
+	background:  #fff8e1;
+}
 
 #petImg {
 	box-sizing: 50px;
