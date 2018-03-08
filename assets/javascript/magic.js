@@ -8,3 +8,10 @@
     messagingSenderId: "458156685398" 
   };
   firebase.initializeApp(config);
+
+ var fileUpLoad = document.querySelector("#fileInput");
+
+console.log(fileUpLoad);
+  fileUpLoad.addEventListener('change', function(event) {
+  console.log(event);
+ }); 
