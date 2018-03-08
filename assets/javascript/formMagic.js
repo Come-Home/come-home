@@ -13,9 +13,9 @@ function FormApiPull(number, name, city, zipcode) {
     'NC' +
     zipSet +
     '&key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs';
-
+  console.log(url);
 }
-  num.replace(" ", "+")
+  
 $('#entireForm').on('submit', function () {
   var number = $('#lostNumAddInput').val();
   var name = $('#lostNameAddInput').val();
