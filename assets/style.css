@@ -3,11 +3,40 @@ body {
 };
 
 #petImg {
-	width: 200px;
-	height: 200px;
+	box-sizing: 50px;
 }
 
 .petInfo {
 	margin: 50px 100px;
+}
+
+p {
+	font-family: 'Caveat Brush', cursive;
+}
+
+.petRecord #petName-ld {
+	width:20%;
+}
+
+.petRecord #breed-ld {
+	width:20%;
+}
+
+
+.petRecord #petAge-ld {
+	width:20%;
+}
+
+
+.petRecord #petDateLost-ld {
+	width:20%;
+}
+
+.petRecord #petName-ld {
+	width:20%;
+}
+
+.ownerRecord span {
+	width:15%;
 }
 
