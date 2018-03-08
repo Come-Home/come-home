@@ -25,7 +25,9 @@ $(document).on('submit', '#entireForm', function (event) {
   $.ajax({
     url: address,
     success: function (response) {
-      console.log(response.results[0].geometry.location);
+      console.log(response.results[0].geometry.location.lng);
+      var lat = response.results[0].geometry.location.lat;
+      var lng = response.results[0].geometry.location.lng;
     }
   })
 
