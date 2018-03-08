@@ -11,6 +11,15 @@
 
   firebase.initializeApp(config);
 
+  var fileUpLoad = document.querySelector("#fileInput");
+
+  console.log(fileUpLoad);
+  fileUpLoad.addEventListener('change', function(event) {
+  console.log(event);
+ }); 
+
+  firebase.initializeApp(config);
+
   var dataRef = firebase.database();
 
   var petName = "";
@@ -101,4 +110,5 @@
  //  $(document).ready(function(){
  //   $('.collapsible').collapsible();
  // });
+
 

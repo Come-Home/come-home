@@ -36,10 +36,9 @@
     </nav>
     <div class="container white">
         <div class="row">
-            <h5>Dog Info</h5>
-                Select image of your dog to upload:
-                <input type="file" id="input">
-                <input type="submit" value="Upload Image" name="submit">
+            <h5>Dog Info</h5> Select image of your dog to upload:
+            <input type="file" id="fileInput">
+            <input id="submitImage" type="submit" value="Upload Image" name="submit">
             </form>
         </div>
         <div class="row">
@@ -98,22 +97,39 @@
                 </div>
                 <h5>Address in Which the Dog was Last Seen</h5>
                 <div class="row">
-                    <div class="input-field col s12">
-                        <input id="lostAddInput" type="text" class="validate">
-                        <label for="lostAddInput">Address</label>
+                    <div class="input-field col s2">
+                        <input id="lostNumAddInput" type="text" class="validate">
+                        <label for="lostNumAddInput">House Number</label>
+                    </div>
+                    <div class="input-field col s4">
+                        <input id="lostNameAddInput" type="text" class="validate">
+                        <label for="lostNameAddInput">Street Name</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input id="lostCityAddInput" type="text" class="validate">
+                        <label for="lostCityAddInput">City</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input id="lostStateAddInput" type="text" class="validate" value="NC">
+                        <label for="lostStateAddInput">State</label>
+                    </div>
+                    <div class="input-field col s2">
+                        <input id="lostZipAddInput" type="text" class="validate">
+                        <label for="lostZipAddInput">Zip Code</label>
                     </div>
                 </div>
                 <div class="row">
-                    <button class="btn waves-effect waves-light yellow darken-2" type="submit" name="action">Submit
+                    <button class="btn waves-effect waves-light yellow darken-2" id="submit" type="submit" name="action">Submit
                         <i class="material-icons right">send</i>
                     </button>
                 </div>
             </form>
         </div>
     </div>
+    <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-    <script src=“https://www.gstatic.com/firebasejs/4.10.1/firebase.js“></script>
+    <script type="text/javascript" src="assets/javascript/magic.js"></script>
     <script type="text/javascript">
     $(document).ready(function() {
         $("select").material_select();
