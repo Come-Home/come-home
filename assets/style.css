@@ -49,41 +49,81 @@ h4 {
 	background:  #fff8e1;
 }
 
-#petImg {
-	box-sizing: 50px;
-}
+
+
 
 .petInfo {
 	margin: 50px 100px;
 }
 
+
+p, h1, .brand-logo {
+	font-family: 'Caveat Brush', cursive;
+}
+
+/**/
+
+/*. {
+	outline: none;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    transition: transform 100ms;
+}
+
+
+.pet_owner:hover {
+	transform:translateY(8%);
+	filter:brightness(500%);
+}
+*/
+.aboutUs {
+	width: 70%;
+	text-align: center;
+}
+
+.dogDataName {
+  width: 260px;
+  top: 140px;
+    display: block;
+    margin: 0 0 10px 10px;
+   /* z-index: 1;
+    position: absolute;*/
+   text-align:center;
+    color: white;
+  }
+
+/*.lostDogImage {
+  width: 30%;
+}*/
+
+/*.lostDogImage td {
+  width: 30%;
+}*/
+
+td {
+  padding: 5px;
+  text-align: center;
+}
+
+.dogData {
+position: relative;
+}
+
+#lostDog {
+  width: 10%;
+}
+
+.importImg {
+  width: 200px;
+}
+=======
 p {
 	font-family: 'Caveat Brush', cursive;
 }
 
-.petRecord #petName-ld {
-	width:20%;
-}
-
-.petRecord #breed-ld {
-	width:20%;
-}
 
 
-.petRecord #petAge-ld {
-	width:20%;
-}
 
 
-.petRecord #petDateLost-ld {
-	width:20%;
-}
-
-.petRecord #petName-ld {
-	width:20%;
-}
-
-.ownerRecord span {
-	width:15%;
-}
 
