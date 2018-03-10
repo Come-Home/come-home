@@ -218,20 +218,8 @@ var petDisplay =
     // Handle the errors
   }, function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
-  });
+  };
 
-  dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
-
-    // Change the HTML to reflect
-    $("#petBreedDisplay").text(snapshot.val().breed);
-    $("#petNameDisplay").text(snapshot.val().petName);
-    $("#petAgeDisplay").text(snapshot.val().petAge);
-    $("#petDateLostDisplay").text(snapshot.val().petDateLost);
-    $("#ownerNameDisplay").text(snapshot.val().contactName);
-    $("#ownerPhoneDisplay").text(snapshot.val().phoneNumber);
-    $("#ownerEmailDisplay").text(snapshot.val().email);
-    $("#commentDisplay").text(snapshot.val().comment);
-  });
 
   //Pulls info from form in order to build an apicall URL
   function FormApiPull(number, name, city, zipcode) {
