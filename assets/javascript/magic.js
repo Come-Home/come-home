@@ -171,20 +171,20 @@ var petDisplay =
         <table>
         <tbody>
           <td><img class="responsive-img z-depth-3 circle lostDogImage" src="${childSnapshot.val().imgURL}"/></td>
-          <td id="petName-ld">${childSnapshot.val().petName}</td>
-          <td id="breed-ld">${childSnapshot.val().breed}</td>
-          <td id="petAge-ld">${childSnapshot.val().petAge}</td>
-          <td id="petDateLost-ld>${childSnapshot.val().petDateLost}</td>
-          <td id="comment-ld">${childSnapshot.val().comment}</td>
+          <td class="petName-ld">${childSnapshot.val().petName}</td>
+          <td class="breed-ld">${childSnapshot.val().breed}</td>
+          <td class="petAge-ld">${childSnapshot.val().petAge}</td>
+          <td class="petDateLost-ld>${childSnapshot.val().petDateLost}</td>
+          <td class="comment-ld">${childSnapshot.val().comment}</td>
           <td><button class=".pet_owner light-green darken-3 white-text" >Location Last Seen</button></td>
 
       </div>
       <div class="collapsible-body ownerRecord">
         <table>
-        <td id="contactFirstName-ld">${childSnapshot.val().firstName}</td>
-        <td id="contactLastName-ld">${childSnapshot.val().lastName}</td>
-        <td id="phoneNumber-ld">${childSnapshot.val().phoneNumber}</td>
-        <td id="email-ld">${childSnapshot.val().email}</td>
+        <td class="contactFirstName-ld">${childSnapshot.val().firstName}</td>
+        <td class="contactLastName-ld">${childSnapshot.val().lastName}</td>
+        <td class="phoneNumber-ld">${childSnapshot.val().phoneNumber}</td>
+        <td class="email-ld">${childSnapshot.val().email}</td>
       </div>
     </li>`;
 
@@ -205,7 +205,8 @@ var petDisplay =
       $(".petName-ld").text(snapshot.val().petName);
       $(".petAge-ld").text(snapshot.val().petAge);
       $(".petDateLost-ld").text(snapshot.val().petDateLost);
-      $(".contactName-ld").text(snapshot.val().contactName);
+      $(".contactFirstName-ld").text(snapshot.val().firstName);
+      $(".contactLastName-ld").text(snapshot.val().lastName);
       $(".phoneNumber-ld").text(snapshot.val().phoneNumber);
       $(".email-ld").text(snapshot.val().email);
       $(".comment-ld").text(snapshot.val().comment);
