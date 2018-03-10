@@ -57,10 +57,6 @@ h4 {
 }
 
 
-p, h1, .brand-logo {
-	font-family: 'Caveat Brush', cursive;
-}
-
 /**/
 
 /*. {
@@ -80,13 +76,17 @@ p, h1, .brand-logo {
 .aboutUs {
 	width: 70%;
 	text-align: center;
+  margin-top: 20px;
+}
+
+.aboutUs {
+
 }
 
 .dogDataName {
-  width: 260px;
-  top: 140px;
-    display: block;
-    margin: 0 0 10px 10px;
+  width: 80%;
+  display: block;
+   margin: 0 0 10px 10px;
    /* z-index: 1;
     position: absolute;*/
    text-align:center;
@@ -106,8 +106,8 @@ td {
   text-align: center;
 }
 
-.dogData {
-position: relative;
+.dogDataName {
+width: 90%;
 }
 
 #lostDog {
@@ -115,13 +115,16 @@ position: relative;
 }
 
 .importImg {
-  width: 200px;
+  width: 100%;
 }
 =======
 p {
 	font-family: 'Caveat Brush', cursive;
 }
 
+.container .abousUs p {
+    position: center;  
+}
 
 
 
