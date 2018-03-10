@@ -1,10 +1,9 @@
-  // Initialize Firebase
   // On Ready...
   $(function () {
     $('.collapsible').collapsible();
 
     $.ajax({
-      url: address,
+      url: "address",
       //on callback response...
       success: function (response) {
         //...save coordinates to address
@@ -16,6 +15,7 @@
     })
   });
 
+    // Initialize Firebase
   var config = {
     apiKey: "AIzaSyAWGMdRh9ilJ6IqAM2fp4pU6pA9JoYKibE",
     authDomain: "comehome-22679.firebaseapp.com",
