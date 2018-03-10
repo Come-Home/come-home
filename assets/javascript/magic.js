@@ -59,7 +59,8 @@ var dataRef = firebase.database();
       console.log(fileUpLoad);
       fileUpLoad.addEventListener('change', function(event) {
           console.log(event);
-      });
+      }); 
+  });
 
 
       
@@ -140,9 +141,9 @@ var dataRef = firebase.database();
                   console.log(lng);
               }
           })
-      })
+      });
 
-  });
+ 
 
   dataRef.ref().on("child_added", function(childSnapshot) {
       console.log(childSnapshot.val().petName);
@@ -211,7 +212,7 @@ var dataRef = firebase.database();
 
 
   });
-  
+
   //Pulls info from form in order to build an apicall URL
   function FormApiPull(number, name, city, zipcode) {
       var numSet = number.trim().split(" ").join("+") + ',';
@@ -226,5 +227,5 @@ var dataRef = firebase.database();
           zipSet +
           '&key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs';
       console.log(address);
-      return address;
+    
   }
