@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Come Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
+</head>
+
+<body>
+<!-- navigation bar -->
+  <nav>
+        <div class="nav-wrapper light-green darken-3">
+            <a href="#" class="brand-logo">Come Home</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li><a href="lostForm.html">Report a lost pet</a></li>
+                <li><a href="lostList.html">Found a lost pet</a></li>
+                <li><a href="MapView.html">Map</a></li>
+                <li><a href="aboutUs.html">About Us</a></li>
+            </ul>
+        </div>
+    </nav>
+<!-- lost pets info -->
+<div class="petInfo">
+	 <ul class="collapsible" id="petList" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header petRecord">
+        <img src="assets/images/puppy.jpg" id="petImg" alt="puppy">
+        <span id="petName-ld">Fluffy</span>
+        <span id="breed-ld">Lab</span>
+        <span id="petAge-ld">2 <span>years old</span></span>
+        <span>Date Lost:</span><span id="petDateLost-ld">01/01/2018</span>
+        <span id="comment-ld">Comment</span>
+        <a href id="lostDogMap">Location Found</a>
+
+      </div>
+      <div class="collapsible-body ownerRecord">
+        <span id="contactName-ld">name</span>
+        <span id="phoneNumber-ld">phone</span>
+        <span id="email-ld">email</span>
+        <span id="houseNumber-ld">H#</span>
+        <span id="streetName-ld">Street</span>
+        <span id="city-ld">City</span>
+        <span id="state-ld">state</span>
+        <span id="zipcode-ld">zip</span>
+      </div>
+    </li>
+    
+  </ul>
+</div>
+
+
+<script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
+   <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src="assets/javascript/magic.js"></script>
+</body>
+
+</html>

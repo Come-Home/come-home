@@ -55,7 +55,7 @@
                 </div>
                 <div class="row">
                     <div class="input-field col s6">
-                        <select>
+                        <select id="petBreedInput">
                             <option value="" disabled selected>Breed options</option>
                             <option value="1">Option 1</option>
                         </select>
@@ -129,6 +129,9 @@
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script type="text/javascript" src="assets/javascript/magic.js"></script>
+
     <script type="text/javascript">
     $(document).ready(function() {
         $("select").material_select();
@@ -137,7 +140,9 @@
         $(".button-collapse").sideNav();
     })
     </script>
+
     <script src="assets/javascript/magic.js"></script>
+
 </body>
 
 </html>
