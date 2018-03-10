@@ -1,12 +1,28 @@
-  // Initialize Firebase
+  // On Ready...
+  $(function () {
+    $('.collapsible').collapsible();
 
+    $.ajax({
+      url: "address",
+      //on callback response...
+      success: function (response) {
+        //...save coordinates to address
+        var lat = response.results[0].geometry.location.lat;
+        var lng = response.results[0].geometry.location.lng;
+        console.log(lat);
+        console.log(lng);
+      }
+    })
+  });
+
+    // Initialize Firebase
   var config = {
-      apiKey: "AIzaSyAWGMdRh9ilJ6IqAM2fp4pU6pA9JoYKibE",
-      authDomain: "comehome-22679.firebaseapp.com",
-      databaseURL: "https://comehome-22679.firebaseio.com",
-      projectId: "comehome-22679",
-      storageBucket: "",
-      messagingSenderId: "458156685398"
+    apiKey: "AIzaSyAWGMdRh9ilJ6IqAM2fp4pU6pA9JoYKibE",
+    authDomain: "comehome-22679.firebaseapp.com",
+    databaseURL: "https://comehome-22679.firebaseio.com",
+    projectId: "comehome-22679",
+    storageBucket: "",
+    messagingSenderId: "458156685398"
   };
 
   firebase.initializeApp(config);
@@ -38,11 +54,15 @@ var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
     }).catch(function(error){
       console.error(error);
     });
-
+    
+  console.log(fileUpLoad);
+  fileUpLoad.addEventListener('change', function (event) {
+    console.log(event);
   });
 
 
   var dataRef = firebase.database();
+
 
   var petName = "";
   var petAge = 0;
@@ -102,10 +122,29 @@ var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
           dateAdded: firebase.database.ServerValue.TIMESTAMP
 
       });
+    
+    var number = $('#lostNumAddInput').val();
+    var name = $('#lostNameAddInput').val();
+    var city = $('#lostCityAddInput').val();
+    var zip = $('#lostZipAddInput').val();
+    //call previous sleeping function
+    FormApiPull(number, name, city, zip);
+
+    //ajax call to built URL
+    $.ajax({
+      url: address,
+      //on callback response...
+      success: function (response) {
+        //...save coordinates to address
+        var lat = response.results[0].geometry.location.lat;
+        var lng = response.results[0].geometry.location.lng;
+        console.log(lat);
+        console.log(lng);
+      }
+    })
+  })
 
   });
-
-
 
   dataRef.ref().on("child_added", function(childSnapshot) {
 console.log(childSnapshot.val().petName);
@@ -175,4 +214,39 @@ var petDisplay =
 
   });
 
+
+    // Handle the errors
+  }, function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  });
+
+  dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
+
+    // Change the HTML to reflect
+    $("#petBreedDisplay").text(snapshot.val().breed);
+    $("#petNameDisplay").text(snapshot.val().petName);
+    $("#petAgeDisplay").text(snapshot.val().petAge);
+    $("#petDateLostDisplay").text(snapshot.val().petDateLost);
+    $("#ownerNameDisplay").text(snapshot.val().contactName);
+    $("#ownerPhoneDisplay").text(snapshot.val().phoneNumber);
+    $("#ownerEmailDisplay").text(snapshot.val().email);
+    $("#commentDisplay").text(snapshot.val().comment);
+  });
+
+  //Pulls info from form in order to build an apicall URL
+  function FormApiPull(number, name, city, zipcode) {
+    var numSet = number.trim().split(" ").join("+") + ',';
+    var nameSet = name.trim().split(" ").join("+") + ',+';
+    var citySet = city.trim().split(" ").join("+") + ',+';
+    var zipSet = zipcode.trim().split(" ").join("+");
+    address = 'https://maps.googleapis.com/maps/api/geocode/json?address=' +
+      numSet +
+      nameSet +
+      citySet +
+      'NC+' +
+      zipSet +
+      '&key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs';
+    console.log(address);
+    return address;
+  }
 
