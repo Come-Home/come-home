@@ -33,7 +33,7 @@ var dataRef = firebase.database();
 
 
   var fileUpLoad = $("#fileInput");
-  var imgURL
+  var imgURL;
 
   fileUpLoad.on('change', function(event) {
       var file = event.target.files[0];
@@ -60,11 +60,12 @@ var dataRef = firebase.database();
       fileUpLoad.addEventListener('change', function(event) {
           console.log(event);
       });
+  })
 
 
       
 
-      $("#submit").on("click", function(event) {
+      $(document).on("submit", "#entireForm", function(event) {
           event.preventDefault();
 
           var petName = "";
@@ -142,7 +143,7 @@ var dataRef = firebase.database();
           })
       })
 
-  });
+  
 
   dataRef.ref().on("child_added", function(childSnapshot) {
       console.log(childSnapshot.val().petName);
