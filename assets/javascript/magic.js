@@ -11,21 +11,44 @@
 
   firebase.initializeApp(config);
 
-  var fileUpLoad = document.querySelector("#fileInput");
+var CLOUDINARY_URL =  "https://api.cloudinary.com/v1_1/dnp117saf/upload";
+var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
 
-  console.log(fileUpLoad);
-  fileUpLoad.addEventListener('change', function(event) {
-  console.log(event);
- }); 
 
-  firebase.initializeApp(config);
+  var fileUpLoad = $("#fileInput");
+  var imgURL 
+
+  fileUpLoad.on('change' , function(event){
+    var file = event.target.files[0];
+    console.log(file);
+    var formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+
+    axios({
+      url: CLOUDINARY_URL, 
+      method: "POST",
+      headers:{
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: formData
+    }).then(function(response){
+      imgURL = response.data.url;
+      console.log(response);
+    }).catch(function(error){
+      console.error(error);
+    });
+
+  });
+
 
   var dataRef = firebase.database();
 
   var petName = "";
   var petAge = 0;
   var petDateLost = 0;
-  var contactName = "";
+  var firstName = "";
+  var lastName = "";
   var phoneNumber = 0;
   var email = "";
   var breed = "";
@@ -42,14 +65,15 @@
       event.preventDefault();
 
 
-      breed = $("#petBreedInput").val().trim();
-      petName = $("#petBreedInput").val().trim();
-      petAge = $("#petAgeInput").val().trim();
-      petDateLost = $("#lostAddInput").val().trim();
-      contactName = $("#ownerNameInput").val().trim();
-      phoneNumber = $("#ownerPhoneInput").val().trim();
+      breed = $("#petBreedInput").val();
+      petName = $("#petNameInput").val().trim();
+      petAge = $("#petAgeInput").val();
+      petDateLost = $("#petDateLostInput").val().trim();
+      firstName = $("#first_name").val().trim();
+      lastName = $("#last_name").val().trim();
+      phoneNumber = $("#icon_telephone").val().trim();
       email = $("#ownerEmailInput").val().trim();
-      comment = $("#petCommentInput").val().trim();
+      comment = $("#comment").val();
       houseNum = $("#lostNumAddInput").val().trim();
       streetName = $("#lostNameAddInput").val().trim();
       city = $("#lostCityAddInput").val().trim();
@@ -59,11 +83,13 @@
       // Code for the push
       dataRef.ref().push({
 
+          imgURL: imgURL,
           breed: breed,
           petName: petName,
           petAge: petAge,
           petDateLost: petDateLost,
-          contactName: contactName,
+          firstName: firstName,
+          lastName: lastName,
           phoneNumber: phoneNumber,
           email: email,
           comment: comment,
@@ -74,17 +100,23 @@
           zipcode: zipcode,
 
           dateAdded: firebase.database.ServerValue.TIMESTAMP
+
       });
+
   });
 
-  dataRef.ref().on("child_added", function(childSnapshot) {
 
+
+  dataRef.ref().on("child_added", function(childSnapshot) {
+console.log(childSnapshot.val().petName);
       // Log everything that's coming out of snapshot
+      console.log(childSnapshot.val().imgURL);
       console.log(childSnapshot.val().breed);
       console.log(childSnapshot.val().petName);
       console.log(childSnapshot.val().petAge);
       console.log(childSnapshot.val().petDateLost);
-      console.log(childSnapshot.val().contactName);
+      console.log(childSnapshot.val().firstName);
+      console.log(childSnapshot.val().lastName);
       console.log(childSnapshot.val().phoneNumber);
       console.log(childSnapshot.val().email);
       console.log(childSnapshot.val().comment);
@@ -94,24 +126,33 @@
       console.log(childSnapshot.val().state);
       console.log(childSnapshot.val().zipcode);
 
+var petDisplay = 
+    `<li>
+      <div class="collapsible-header petRecord">
+        <table>
+        <tbody>
+          <td><img class="responsive-img z-depth-3 circle lostDogImage" src="${childSnapshot.val().imgURL}"/></td>
+          <td id="petName-ld">${childSnapshot.val().petName}</td>
+          <td id="breed-ld">${childSnapshot.val().breed}</td>
+          <td id="petAge-ld">${childSnapshot.val().petAge}</td>
+          <td id="petDateLost-ld>${childSnapshot.val().petDateLost}</td>
+          <td id="comment-ld">${childSnapshot.val().comment}</td>
+          <td><button class=".pet_owner light-green darken-3 white-text" >Location Last Seen</button></td>
+
+      </div>
+      <div class="collapsible-body ownerRecord">
+        <table>
+        <td id="contactFirstName-ld">${childSnapshot.val().firstName}</td>
+        <td id="contactLastName-ld">${childSnapshot.val().lastName}</td>
+        <td id="phoneNumber-ld">${childSnapshot.val().phoneNumber}</td>
+        <td id="email-ld">${childSnapshot.val().email}</td>
+      </div>
+    </li>`;
+
+
       // full list of items to the well
-      $("#petList").append("" +childSnapshot.val().breed + "" + childSnapshot.val().petName + "" + childSnapshot.val().petAge + ""
-        + childSnapshot.val().petDateLost + "" + childSnapshot.val().contactName + "" + childSnapshot.val().phoneNumber + ""
-        + childSnapshot.val().email + "" + childSnapshot.val().comment + "" + childSnapshot.val().houseNum + "" +
-        childSnapshot.val().streetName + "" + childSnapshot.val().city + "" + childSnapshot.val().state + "" +
-        childSnapshot.val().zipcode); 
-      // $("#petList").append("<div class='well'><span class='member-name'> " + childSnapshot.val().breed +
-      //   " </span><span class='member-email'> " + childSnapshot.val().petName +
-      //   " </span><span class='member-age'> " + childSnapshot.val().petAge + " </span><span class='member-age'> " + childSnapshot.val().petDateLost +
-      //   " </span><span class='member-comment'> " +  childSnapshot.val().comment + " </span></div>");
-
-
-
-    // <li>
-    //   <div class="collapsible-header"><img src="assets/images/puppy.jpg" id="petImg" alt="puppy"><i class="material-icons">Dog's name/info</i></div>
-    //   <div class="collapsible-body"><span>Owner info goes here</span></div>
-    // </li>
-
+      $("#petList").append(petDisplay) 
+  
       // Handle the errors
   }, function(errorObject) {
       console.log("Errors handled: " + errorObject.code);
@@ -120,19 +161,16 @@
   dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
 
       // Change the HTML to reflect
-      $("#breed-ld").text(snapshot.val().breed);
-      $("#petName-ld").text(snapshot.val().petName);
-      $("#petAge-ld").text(snapshot.val().petAge);
-      $("#petDateLost-ld").text(snapshot.val().petDateLost);
-      $("#contactName-ld").text(snapshot.val().contactName);
-      $("#phoneNumber-ld").text(snapshot.val().phoneNumber);
-      $("#email-ld").text(snapshot.val().email);
-      $("#comment-ld").text(snapshot.val().comment);
-      $("#houseNumber-ld").text(snapshot.val().houseNum);
-      $("#streetName-ld").text(snapshot.val().streetName);
-      $("#city-ld").text(snapshot.val().city);
-      $("#state-ld").text(snapshot.val().state);
-      $("#zipcode-ld").text(snapshot.val().zipcode);
+      $(".lostDogImage").text(snapshot.val().imgURL);
+      $(".breed-ld").text(snapshot.val().breed);
+      $(".petName-ld").text(snapshot.val().petName);
+      $(".petAge-ld").text(snapshot.val().petAge);
+      $(".petDateLost-ld").text(snapshot.val().petDateLost);
+      $(".contactName-ld").text(snapshot.val().contactName);
+      $(".phoneNumber-ld").text(snapshot.val().phoneNumber);
+      $(".email-ld").text(snapshot.val().email);
+      $(".comment-ld").text(snapshot.val().comment);
+
 
   });
 
