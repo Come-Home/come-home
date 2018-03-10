@@ -27,7 +27,7 @@
 
   firebase.initializeApp(config);
 
-var dataRef = firebase.database();
+  var dataRef = firebase.database();
   var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dnp117saf/upload";
   var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
 
@@ -56,94 +56,93 @@ var dataRef = firebase.database();
           console.error(error);
       });
 
+
       console.log(fileUpLoad);
       fileUpLoad.addEventListener('change', function(event) {
           console.log(event);
-      }); 
+      });
   });
 
 
-      
+  $("#submit").on("click", function(event) {
+      event.preventDefault();
 
-      $("#submit").on("click", function(event) {
-          event.preventDefault();
+      var petName = "";
+      var petAge = 0;
+      var petDateLost = 0;
+      var firstName = "";
+      var lastName = "";
+      var phoneNumber = 0;
+      var email = "";
+      var breed = "";
+      var comment = "";
+      var houseNum = 0;
+      var streetName = "";
+      var city = "";
+      var state = "";
+      var zipcode = 0;
 
-          var petName = "";
-          var petAge = 0;
-          var petDateLost = 0;
-          var firstName = "";
-          var lastName = "";
-          var phoneNumber = 0;
-          var email = "";
-          var breed = "";
-          var comment = "";
-          var houseNum = 0;
-          var streetName = "";
-          var city = "";
-          var state = "";
-          var zipcode = 0;
-           
 
-          breed = $("#petBreedInput").val();
-          petName = $("#petNameInput").val().trim();
-          petAge = $("#petAgeInput").val();
-          petDateLost = $("#petDateLostInput").val().trim();
-          firstName = $("#first_name").val().trim();
-          lastName = $("#last_name").val().trim();
-          phoneNumber = $("#icon_telephone").val().trim();
-          email = $("#ownerEmailInput").val().trim();
-          comment = $("#comment").val();
-          houseNum = $("#lostNumAddInput").val().trim();
-          streetName = $("#lostNameAddInput").val().trim();
-          city = $("#lostCityAddInput").val().trim();
-          state = $("#lostStateAddInput").val().trim();
-          zipcode = $("#lostZipAddInput").val().trim();
-          
-          // Code for the push
-          dataRef.ref().push({
+      breed = $("#petBreedInput").val();
+      petName = $("#petNameInput").val().trim();
+      petAge = $("#petAgeInput").val();
+      petDateLost = $("#petDateLostInput").val().trim();
+      firstName = $("#first_name").val().trim();
+      lastName = $("#last_name").val().trim();
+      phoneNumber = $("#icon_telephone").val().trim();
+      email = $("#ownerEmailInput").val().trim();
+      comment = $("#comment").val();
+      houseNum = $("#lostNumAddInput").val().trim();
+      streetName = $("#lostNameAddInput").val().trim();
+      city = $("#lostCityAddInput").val().trim();
+      state = $("#lostStateAddInput").val().trim();
+      zipcode = $("#lostZipAddInput").val().trim();
 
-              imgURL: imgURL,
-              breed: breed,
-              petName: petName,
-              petAge: petAge,
-              petDateLost: petDateLost,
-              firstName: firstName,
-              lastName: lastName,
-              phoneNumber: phoneNumber,
-              email: email,
-              comment: comment,
-              houseNum: houseNum,
-              streetName: streetName,
-              city: city,
-              state: state,
-              zipcode: zipcode,
+      // Code for the push
+      dataRef.ref().push({
 
-              dateAdded: firebase.database.ServerValue.TIMESTAMP
+          imgURL: imgURL || "",
+          breed: breed,
+          petName: petName,
+          petAge: petAge,
+          petDateLost: petDateLost,
+          firstName: firstName,
+          lastName: lastName,
+          phoneNumber: phoneNumber,
+          email: email,
+          comment: comment,
+          houseNum: houseNum,
+          streetName: streetName,
+          city: city,
+          state: state,
+          zipcode: zipcode,
 
-          });
+          dateAdded: firebase.database.ServerValue.TIMESTAMP
 
-          var number = $('#lostNumAddInput').val();
-          var name = $('#lostNameAddInput').val();
-          var city = $('#lostCityAddInput').val();
-          var zip = $('#lostZipAddInput').val();
-          //call previous sleeping function
-          FormApiPull(number, name, city, zip);
-
-          //ajax call to built URL
-          $.ajax({
-              url: address,
-              //on callback response...
-              success: function(response) {
-                  //...save coordinates to address
-                  var lat = response.results[0].geometry.location.lat;
-                  var lng = response.results[0].geometry.location.lng;
-                  console.log(lat);
-                  console.log(lng);
-              }
-          })
       });
 
- 
+      var number = $('#lostNumAddInput').val();
+      var name = $('#lostNameAddInput').val();
+      var city = $('#lostCityAddInput').val();
+      var zip = $('#lostZipAddInput').val();
+      //call previous sleeping function
+      FormApiPull(number, name, city, zip);
+
+      //ajax call to built URL
+      $.ajax({
+          url: address,
+          //on callback response...
+          success: function(response) {
+              //...save coordinates to address
+              var lat = response.results[0].geometry.location.lat;
+              var lng = response.results[0].geometry.location.lng;
+              console.log(lat);
+              console.log(lng);
+          }
+      })
+  });
+
+
 
   dataRef.ref().on("child_added", function(childSnapshot) {
       console.log(childSnapshot.val().petName);
@@ -227,5 +226,5 @@ var dataRef = firebase.database();
           zipSet +
           '&key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs';
       console.log(address);
-    
+
   }
