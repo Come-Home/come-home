@@ -212,13 +212,10 @@ var petDisplay =
       $(".comment-ld").text(snapshot.val().comment);
 
 
-  });
-
-
-    // Handle the errors
-  }, function (errorObject) {
+  }    // Handle the errors
+  , function (errorObject) {
     console.log("Errors handled: " + errorObject.code);
-  };
+  });
 
 
   //Pulls info from form in order to build an apicall URL
