@@ -27,17 +27,28 @@
 <div class="petInfo">
 	 <ul class="collapsible" id="petList" data-collapsible="accordion">
     <li>
-      <div class="collapsible-header"><img src="assets/images/puppy.jpg" id="petImg" alt="puppy"><i class="material-icons">Dog's name/info</i></div>
-      <div class="collapsible-body"><span>Owner info goes here</span></div>
+      <div class="collapsible-header petRecord">
+        <img src="assets/images/puppy.jpg" id="petImg" alt="puppy">
+        <span id="petName-ld">Fluffy</span>
+        <span id="breed-ld">Lab</span>
+        <span id="petAge-ld">2 <span>years old</span></span>
+        <span>Date Lost:</span><span id="petDateLost-ld">01/01/2018</span>
+        <span id="comment-ld">Comment</span>
+        <a href id="lostDogMap">Location Found</a>
+
+      </div>
+      <div class="collapsible-body ownerRecord">
+        <span id="contactName-ld">name</span>
+        <span id="phoneNumber-ld">phone</span>
+        <span id="email-ld">email</span>
+        <span id="houseNumber-ld">H#</span>
+        <span id="streetName-ld">Street</span>
+        <span id="city-ld">City</span>
+        <span id="state-ld">state</span>
+        <span id="zipcode-ld">zip</span>
+      </div>
     </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">Dog's name/info</i></div>
-      <div class="collapsible-body"><span>Owner info goes here</span></div>
-    </li>
-    <li>
-      <div class="collapsible-header"><i class="material-icons">Dog's name/info</i></div>
-      <div class="collapsible-body"><span>Owner info goes here</span></div>
-    </li>
+    
   </ul>
 </div>
   <script>
