@@ -51,9 +51,11 @@ h4 {
 
 
 
+
 .petInfo {
 	margin: 50px 100px;
 }
+
 
 p, h1, .brand-logo {
 	font-family: 'Caveat Brush', cursive;
@@ -115,3 +117,13 @@ position: relative;
 .importImg {
   width: 200px;
 }
+=======
+p {
+	font-family: 'Caveat Brush', cursive;
+}
+
+
+
+
+
+
