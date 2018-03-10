@@ -1,0 +1,117 @@
+body {
+    background: url("images/paws.gif");
+}
+
+
+
+ .brand-logo{
+  width: 250px;
+  float: left;
+  text-align: center;
+  line-height: 70px;
+  font-weight: 700;
+  font-size: 30px;
+ }  
+
+nav a {
+	margin-right: 20px;
+  height: 90px;
+  float: right;
+  text-align: center;
+  line-height: 90px;
+  font-weight: 400;
+  font-size: 25px;
+}
+
+h4 {
+	color: yellow darken-2;
+}
+
+.side-nav li a {
+	float: none;
+	width: 100%;
+}
+
+.cards {
+   display: flex;
+   flex-wrap: wrap;
+   justify-content: space-between;
+   margin: 5% 15%;
+}
+
+.card {
+
+    flex: 0 1 45%;
+}
+
+.text-contant {
+	text-align: center;
+	background:  #fff8e1;
+}
+
+
+
+.petInfo {
+	margin: 50px 100px;
+}
+
+p, h1, .brand-logo {
+	font-family: 'Caveat Brush', cursive;
+}
+
+/**/
+
+/*. {
+	outline: none;
+    border-radius: 4px;
+    color: white;
+    border: none;
+    transition: transform 100ms;
+}
+
+
+.pet_owner:hover {
+	transform:translateY(8%);
+	filter:brightness(500%);
+}
+*/
+.aboutUs {
+	width: 70%;
+	text-align: center;
+}
+
+.dogDataName {
+  width: 260px;
+  top: 140px;
+    display: block;
+    margin: 0 0 10px 10px;
+   /* z-index: 1;
+    position: absolute;*/
+   text-align:center;
+    color: white;
+  }
+
+/*.lostDogImage {
+  width: 30%;
+}*/
+
+/*.lostDogImage td {
+  width: 30%;
+}*/
+
+td {
+  padding: 5px;
+  text-align: center;
+}
+
+.dogData {
+position: relative;
+}
+
+#lostDog {
+  width: 10%;
+}
+
+.importImg {
+  width: 200px;
+}
