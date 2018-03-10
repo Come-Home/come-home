@@ -212,6 +212,16 @@ var dataRef = firebase.database();
 
   });
 
+<<<<<<< HEAD
+=======
+
+    // Handle the errors
+  }, function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
+  };
+
+
+>>>>>>> ba67442f5582e6cfeb3f89f9db93d3c34cd34aef
   //Pulls info from form in order to build an apicall URL
   function FormApiPull(number, name, city, zipcode) {
       var numSet = number.trim().split(" ").join("+") + ',';
