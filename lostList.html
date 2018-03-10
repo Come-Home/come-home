@@ -25,42 +25,53 @@
         </div>
     </nav>
     <!-- lost pets info -->
-    <div class="petInfo z-depth-5">
-        <ul class="collapsible" id="petList" data-collapsible="accordion">
+    <div class="container petInfo z-depth-5 ">
+          <ul class="collapsible" id="petList" data-collapsible="accordion">
             <li>
                 <div class="collapsible-header petRecord">
-                  <table>
-                        <tbody>
-                            <td id="lostDog"><img class="responsive-img z-depth-3 circle lostDogImage" src="assets/images/puppy.jpg" /></td>
-                            <td id="petName-ld">Name</td>
-                            <td id="breed-ld">Breed</td>
-                            <td id="petAge-ld">2 <span>years old</span></td>
-                            <td id="petDateLost-ld"><span>Date Lost: </span>01/01/2018</td>
-                            <td id="comment-ld">Comment</td>
-                            <td>
-                                <button class="light-green darken-3 white-text " id="lostDogMap">Location</button>
-                            </td>
-                            <td>
-                                <button class=".pet_owner light-green darken-3 white-text">Click to see the owner</button>
-                            </td>
-                        </tbody>
-                    </table>
+                    <div class="row">
+                        <div class="lostDogImage col s2">
+                            <img class="responsive-img z-depth-3 lostDogImage" src="assets/images/puppy.jpg" />
+                        </div>
+                       
+                        <div class="petName-ld col s1">Name</div>
+                        
+                        <div class="breed-ld col s1">Breed</div>
+                        
+                        <div class="petAge-ld col s2">2<span> years old</span></div>
+                       
+                        <div class="petDateLost-ld col s2"><span>Date Lost: </span>01/01/2018</div>
+                        
+                        <div class="comment-ld col s2">Comment</div>
+                        
+                        <div class="lostDogMap col s2">
+                            <button class="light-green darken-3 white-text">Location</button>
+                        </div>
+                    </div>
+                  </div>
+                    <!-- <div class="row">
+                    <div class="petOwner col s2"> 
+                      <button class="light-green darken-3 white-text">Click to see the owner</button>
+                    </div>
+                  </div> -->
+                    <div class="collapsible-body ownerRecord">
+                        <div class="row">
+                            <div class="contactFirstName-ld col s3">First Name</div>
+                        </div>
+                        <div class="row">
+                            <div class="contactLastName-ld col s3">Last Name</div>
+                        </div>
+                        <div class="row">
+                            <div class="phoneNumber-ld col s3">phone</div>
+                        </div>
+                        <div class="row">
+                            <div class="email-ld col s3">email</div>
+                        </div>
+                    </div>
                 </div>
-                <div class="collapsible-body ownerRecord">
-                    <table>
-                        <tbody>
-                          <tr>
-                            <td id="contactFirstName-ld">First Name</td>
-                            <td id="contactLastName-ld">Last Name</td>
-                            <td id="phoneNumber-ld">phone</td>
-                            <td id="email-ld">email</td>
-                          </tr>
-                        </tbody>
-                    </table>
-                <!-- </div> -->
             </li>
         </ul>
-    </div>
+      </div>
     <script>
     $(document).ready(function() {
         $('.collapsible').collapsible();
@@ -73,4 +84,3 @@
 </body>
 
 </html>
-
