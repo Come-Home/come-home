@@ -188,7 +188,7 @@
 
 
       // full list of items to the well
-      $("#petList").append(petDisplay)
+      $("#petList").prepend(petDisplay)
 
       // Handle the errors
   }, function(errorObject) {
