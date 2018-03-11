@@ -1,153 +1,156 @@
   // On Ready...
-  $(function() {
-      $('.collapsible').collapsible();
+  $(function () {
+    $('.collapsible').collapsible();
 
-      // $.ajax({
-      //     url: "address",
-      //     //on callback response...
-      //     success: function(response) {
-      //         //...save coordinates to address
-      //         var lat = response.results[0].geometry.location.lat;
-      //         var lng = response.results[0].geometry.location.lng;
-      //         console.log(lat);
-      //         console.log(lng);
-      //     }
-      // })
+    // $.ajax({
+    //     url: "address",
+    //     //on callback response...
+    //     success: function(response) {
+    //         //...save coordinates to address
+    //         var lat = response.results[0].geometry.location.lat;
+    //         var lng = response.results[0].geometry.location.lng;
+    //         console.log(lat);
+    //         console.log(lng);
+    //     }
+    // })
   });
 
   // Initialize Firebase
   var config = {
-      apiKey: "AIzaSyAWGMdRh9ilJ6IqAM2fp4pU6pA9JoYKibE",
-      authDomain: "comehome-22679.firebaseapp.com",
-      databaseURL: "https://comehome-22679.firebaseio.com",
-      projectId: "comehome-22679",
-      storageBucket: "",
-      messagingSenderId: "458156685398"
+    apiKey: "AIzaSyAWGMdRh9ilJ6IqAM2fp4pU6pA9JoYKibE",
+    authDomain: "comehome-22679.firebaseapp.com",
+    databaseURL: "https://comehome-22679.firebaseio.com",
+    projectId: "comehome-22679",
+    storageBucket: "",
+    messagingSenderId: "458156685398"
   };
 
   firebase.initializeApp(config);
 
-var dataRef = firebase.database();
+  var dataRef = firebase.database();
   var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dnp117saf/upload";
   var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
 
-
+  var isPageFoundLostPet;
   var fileUpLoad = $("#fileInput");
   var imgURL;
 
-  fileUpLoad.on('change', function(event) {
-      var file = event.target.files[0];
-      console.log(file);
-      var formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+  fileUpLoad.on('change', function (event) {
+    var file = event.target.files[0];
+    console.log(file);
+    var formData = new FormData();
+    formData.append('file', file);
+    formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
-      axios({
-          url: CLOUDINARY_URL,
-          method: "POST",
-          headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          data: formData
-      }).then(function(response) {
-          imgURL = response.data.url;
-          console.log(response);
-      }).catch(function(error) {
-          console.error(error);
-      });
+    axios({
+      url: CLOUDINARY_URL,
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      data: formData
+    }).then(function (response) {
+      imgURL = response.data.url;
+      console.log(response);
+    }).catch(function (error) {
+      console.error(error);
+    });
 
-      console.log(fileUpLoad);
-      fileUpLoad.addEventListener('change', function(event) {
-          console.log(event);
-      });
+    console.log(fileUpLoad);
+    fileUpLoad.addEventListener('change', function (event) {
+      console.log(event);
+    });
   })
 
 
-      
 
-      $(document).on("submit", "#entireForm", function(event) {
-          event.preventDefault();
 
-          var petName = "";
-          var petAge = 0;
-          var petDateLost = 0;
-          var firstName = "";
-          var lastName = "";
-          var phoneNumber = 0;
-          var email = "";
-          var breed = "";
-          var comment = "";
-          var houseNum = 0;
-          var streetName = "";
-          var city = "";
-          var state = "";
-          var zipcode = 0;
-           
+  $(document).on("submit", "#entireForm", function (event) {
+    event.preventDefault();
 
-          breed = $("#petBreedInput").val();
-          petName = $("#petNameInput").val().trim();
-          petAge = $("#petAgeInput").val();
-          petDateLost = $("#petDateLostInput").val().trim();
-          firstName = $("#first_name").val().trim();
-          lastName = $("#last_name").val().trim();
-          phoneNumber = $("#icon_telephone").val().trim();
-          email = $("#ownerEmailInput").val().trim();
-          comment = $("#comment").val();
-          houseNum = $("#lostNumAddInput").val().trim();
-          streetName = $("#lostNameAddInput").val().trim();
-          city = $("#lostCityAddInput").val().trim();
-          state = $("#lostStateAddInput").val().trim();
-          zipcode = $("#lostZipAddInput").val().trim();
-          
-          // Code for the push
-          dataRef.ref().push({
+    var petName = "";
+    var petAge = 0;
+    var petDateLost = 0;
+    var firstName = "";
+    var lastName = "";
+    var phoneNumber = 0;
+    var email = "";
+    var breed = "";
+    var comment = "";
+    var houseNum = 0;
+    var streetName = "";
+    var city = "";
+    var state = "";
+    var zipcode = 0;
 
-              imgURL: imgURL,
-              breed: breed,
-              petName: petName,
-              petAge: petAge,
-              petDateLost: petDateLost,
-              firstName: firstName,
-              lastName: lastName,
-              phoneNumber: phoneNumber,
-              email: email,
-              comment: comment,
-              houseNum: houseNum,
-              streetName: streetName,
-              city: city,
-              state: state,
-              zipcode: zipcode,
 
-              dateAdded: firebase.database.ServerValue.TIMESTAMP
+    breed = $("#petBreedInput").val();
+    petName = $("#petNameInput").val().trim();
+    petAge = $("#petAgeInput").val();
+    petDateLost = $("#petDateLostInput").val().trim();
+    firstName = $("#first_name").val().trim();
+    lastName = $("#last_name").val().trim();
+    phoneNumber = $("#icon_telephone").val().trim();
+    email = $("#ownerEmailInput").val().trim();
+    comment = $("#comment").val();
+    houseNum = $("#lostNumAddInput").val().trim();
+    streetName = $("#lostNameAddInput").val().trim();
+    city = $("#lostCityAddInput").val().trim();
+    state = $("#lostStateAddInput").val().trim();
+    zipcode = $("#lostZipAddInput").val().trim();
 
-          });
+    // Code for the push
+    dataRef.ref().push({
 
-          var number = $('#lostNumAddInput').val();
-          var name = $('#lostNameAddInput').val();
-          var city = $('#lostCityAddInput').val();
-          var zip = $('#lostZipAddInput').val();
-          //call previous sleeping function
-          FormApiPull(number, name, city, zip);
+      imgURL: imgURL,
+      breed: breed,
+      petName: petName,
+      petAge: petAge,
+      petDateLost: petDateLost,
+      firstName: firstName,
+      lastName: lastName,
+      phoneNumber: phoneNumber,
+      email: email,
+      comment: comment,
+      houseNum: houseNum,
+      streetName: streetName,
+      city: city,
+      state: state,
+      zipcode: zipcode,
 
-          //ajax call to built URL
-          $.ajax({
-              url: address,
-              //on callback response...
-              success: function(response) {
-                  //...save coordinates to address
-                  var lat = response.results[0].geometry.location.lat;
-                  var lng = response.results[0].geometry.location.lng;
-                  console.log(lat);
-                  console.log(lng);
-              }
-          })
-      })
+      dateAdded: firebase.database.ServerValue.TIMESTAMP
 
-  
+    });
 
-  dataRef.ref().on("child_added", function(childSnapshot) {
-      console.log(childSnapshot.val().petName);
+    var number = $('#lostNumAddInput').val();
+    var name = $('#lostNameAddInput').val();
+    var city = $('#lostCityAddInput').val();
+    var zip = $('#lostZipAddInput').val();
+    //call previous sleeping function
+    FormApiPull(number, name, city, zip);
+
+    //ajax call to built URL
+    $.ajax({
+      url: address,
+      //on callback response...
+      success: function (response) {
+        //...save coordinates to address
+        var lat = response.results[0].geometry.location.lat;
+        var lng = response.results[0].geometry.location.lng;
+        console.log(lat);
+        console.log(lng);
+      }
+    })
+  })
+
+
+
+  dataRef.ref().on("child_added", function (childSnapshot) {
+    if (isPageFoundLostPet) {
+
+
       // Log everything that's coming out of snapshot
+      console.log(childSnapshot.val().petName);
       console.log(childSnapshot.val().imgURL);
       console.log(childSnapshot.val().breed);
       console.log(childSnapshot.val().petName);
@@ -165,7 +168,7 @@ var dataRef = firebase.database();
       console.log(childSnapshot.val().zipcode);
 
       var petDisplay =
-          `<li>
+        `<li>
       <div class="collapsible-header petRecord">
         <table>
         <tbody>
@@ -192,11 +195,12 @@ var dataRef = firebase.database();
       $("#petList").append(petDisplay)
 
       // Handle the errors
-  }, function(errorObject) {
-      console.log("Errors handled: " + errorObject.code);
+    }
+  }, function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
   });
 
-  dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
+  dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
 
       // Change the HTML to reflect
       $(".lostDogImage").text(snapshot.val().imgURL);
@@ -212,24 +216,25 @@ var dataRef = firebase.database();
 
 
 
-  }    // Handle the errors
-  , function (errorObject) {
-    console.log("Errors handled: " + errorObject.code);
-  });
+    } // Handle the errors
+    ,
+    function (errorObject) {
+      console.log("Errors handled: " + errorObject.code);
+    });
 
   //Pulls info from form in order to build an apicall URL
   function FormApiPull(number, name, city, zipcode) {
-      var numSet = number.trim().split(" ").join("+") + ',';
-      var nameSet = name.trim().split(" ").join("+") + ',+';
-      var citySet = city.trim().split(" ").join("+") + ',+';
-      var zipSet = zipcode.trim().split(" ").join("+");
-      address = 'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-          numSet +
-          nameSet +
-          citySet +
-          'NC+' +
-          zipSet +
-          '&key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs';
-      console.log(address);
-      return address;
+    var numSet = number.trim().split(" ").join("+") + ',';
+    var nameSet = name.trim().split(" ").join("+") + ',+';
+    var citySet = city.trim().split(" ").join("+") + ',+';
+    var zipSet = zipcode.trim().split(" ").join("+");
+    address = 'https://maps.googleapis.com/maps/api/geocode/json?address=' +
+      numSet +
+      nameSet +
+      citySet +
+      'NC+' +
+      zipSet +
+      '&key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs';
+    console.log(address);
+    return address;
   }
