@@ -1,3 +1,4 @@
+
 $('document').ready(function () {
   var address = 'https://dog.ceo/api/breeds/list'
 
@@ -42,3 +43,4 @@ function CreateBreedList(breed, i) {
     }
   })
 }
+
