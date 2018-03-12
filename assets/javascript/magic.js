@@ -1,39 +1,43 @@
+
   // On Ready...
   $(function() {
       $('.collapsible').collapsible();
-
-      // $.ajax({
-      //     url: "address",
-      //     //on callback response...
-      //     success: function(response) {
-      //         //...save coordinates to address
-      //         var lat = response.results[0].geometry.location.lat;
-      //         var lng = response.results[0].geometry.location.lng;
-      //         console.log(lat);
-      //         console.log(lng);
-      //     }
-      // })
   });
+// On Ready...
+$(function () {
+  $('.collapsible').collapsible();
 
-  // Initialize Firebase
-  var config = {
-      apiKey: "AIzaSyAWGMdRh9ilJ6IqAM2fp4pU6pA9JoYKibE",
-      authDomain: "comehome-22679.firebaseapp.com",
-      databaseURL: "https://comehome-22679.firebaseio.com",
-      projectId: "comehome-22679",
-      storageBucket: "",
-      messagingSenderId: "458156685398"
-  };
+  // $.ajax({
+  //     url: "address",
+  //     //on callback response...
+  //     success: function(response) {
+  //         //...save coordinates to address
+  //         var lat = response.results[0].geometry.location.lat;
+  //         var lng = response.results[0].geometry.location.lng;
+  //         console.log(lat);
+  //         console.log(lng);
+  //     }
+  // })
+});
 
-  firebase.initializeApp(config);
+// Initialize Firebase
+var config = {
+  apiKey: "AIzaSyAWGMdRh9ilJ6IqAM2fp4pU6pA9JoYKibE",
+  authDomain: "comehome-22679.firebaseapp.com",
+  databaseURL: "https://comehome-22679.firebaseio.com",
+  projectId: "comehome-22679",
+  storageBucket: "",
+  messagingSenderId: "458156685398"
+};
 
+firebase.initializeApp(config);
   var dataRef = firebase.database();
   var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dnp117saf/upload";
   var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
 
 
   var fileUpLoad = $("#fileInput");
-  var imgURL;
+  var imgURL
 
   fileUpLoad.on('change', function(event) {
       var file = event.target.files[0];
@@ -56,116 +60,119 @@
           console.error(error);
       });
 
+
       console.log(fileUpLoad);
       fileUpLoad.addEventListener('change', function(event) {
           console.log(event);
       });
+  });
+
+$(document).on("submit", "#entireForm", function (event) {
+  event.preventDefault();
+
+  var petName = "";
+  var petAge = 0;
+  var petDateLost = 0;
+  var firstName = "";
+  var lastName = "";
+  var phoneNumber = 0;
+  var email = "";
+  var breed = "";
+  var comment = "";
+  var houseNum = 0;
+  var streetName = "";
+  var city = "";
+  var state = "";
+  var zipcode = 0;
+  var number = $('#lostNumAddInput').val();
+  var name = $('#lostNameAddInput').val();
+  var city = $('#lostCityAddInput').val();
+  var zip = $('#lostZipAddInput').val();
+  //call previous sleeping function
+  FormApiPull(number, name, city, zip);
+
+  //ajax call to built URL
+  $.ajax({
+    url: address,
+    //on callback response...
+    success: function (response) {
+      //...save coordinates to address
+      var latLng = response.results[0].geometry.location;
+      console.log(latLng);
+    ;
+
+    }
   })
 
+  breed = $("#petBreedInput").val();
+  petName = $("#petNameInput").val().trim();
+  petAge = $("#petAgeInput").val();
+  petDateLost = $("#petDateLostInput").val().trim();
+  firstName = $("#first_name").val().trim();
+  lastName = $("#last_name").val().trim();
+  phoneNumber = $("#icon_telephone").val().trim();
+  email = $("#ownerEmailInput").val().trim();
+  comment = $("#comment").val();
+  houseNum = $("#lostNumAddInput").val().trim();
+  streetName = $("#lostNameAddInput").val().trim();
+  city = $("#lostCityAddInput").val().trim();
+  state = $("#lostStateAddInput").val().trim();
+  zipcode = $("#lostZipAddInput").val().trim();
+
+  // Code for the push
+  dataRef.ref().push({
+
+    imgURL: imgURL,
+    breed: breed,
+    petName: petName,
+    petAge: petAge,
+    petDateLost: petDateLost,
+    firstName: firstName,
+    lastName: lastName,
+    phoneNumber: phoneNumber,
+    email: email,
+    comment: comment,
+    houseNum: houseNum,
+    streetName: streetName,
+    city: city,
+    state: state,
+    zipcode: zipcode,
+
+    dateAdded: firebase.database.ServerValue.TIMESTAMP
+
+
+  });
+
+
+})
 
 
 
-  $(document).on("submit", "#entireForm", function(event) {
-      event.preventDefault();
-
-      var petName = "";
-      var petAge = 0;
-      var petDateLost = 0;
-      var firstName = "";
-      var lastName = "";
-      var phoneNumber = 0;
-      var email = "";
-      var breed = "";
-      var comment = "";
-      var houseNum = 0;
-      var streetName = "";
-      var city = "";
-      var state = "";
-      var zipcode = 0;
+dataRef.ref().on("child_added", function (childSnapshot) {
+  if (isPageFoundLostPet) {
 
 
-      breed = $("#petBreedInput").val();
-      petName = $("#petNameInput").val().trim();
-      petAge = $("#petAgeInput").val();
-      petDateLost = $("#petDateLostInput").val().trim();
-      firstName = $("#first_name").val().trim();
-      lastName = $("#last_name").val().trim();
-      phoneNumber = $("#icon_telephone").val().trim();
-      email = $("#ownerEmailInput").val().trim();
-      comment = $("#comment").val();
-      houseNum = $("#lostNumAddInput").val().trim();
-      streetName = $("#lostNameAddInput").val().trim();
-      city = $("#lostCityAddInput").val().trim();
-      state = $("#lostStateAddInput").val().trim();
-      zipcode = $("#lostZipAddInput").val().trim();
+    // Log everything that's coming out of snapshot
+    console.log(childSnapshot.val().petName);
+    console.log(childSnapshot.val().imgURL);
+    console.log(childSnapshot.val().breed);
+    console.log(childSnapshot.val().petName);
+    console.log(childSnapshot.val().petAge);
+    console.log(childSnapshot.val().petDateLost);
+    console.log(childSnapshot.val().firstName);
+    console.log(childSnapshot.val().lastName);
+    console.log(childSnapshot.val().phoneNumber);
+    console.log(childSnapshot.val().email);
+    console.log(childSnapshot.val().comment);
+    console.log(childSnapshot.val().houseNum);
+    console.log(childSnapshot.val().streetName);
+    console.log(childSnapshot.val().city);
+    console.log(childSnapshot.val().state);
+    console.log(childSnapshot.val().zipcode);
 
-      // Code for the push
-      dataRef.ref().push({
+    var petDisplay =
+      `<li>
 
-          imgURL: imgURL,
-          breed: breed,
-          petName: petName,
-          petAge: petAge,
-          petDateLost: petDateLost,
-          firstName: firstName,
-          lastName: lastName,
-          phoneNumber: phoneNumber,
-          email: email,
-          comment: comment,
-          houseNum: houseNum,
-          streetName: streetName,
-          city: city,
-          state: state,
-          zipcode: zipcode,
-
-          dateAdded: firebase.database.ServerValue.TIMESTAMP
-
-      });
-
-      var number = $('#lostNumAddInput').val();
-      var name = $('#lostNameAddInput').val();
-      var city = $('#lostCityAddInput').val();
-      var zip = $('#lostZipAddInput').val();
-      //call previous sleeping function
-      FormApiPull(number, name, city, zip);
-
-      //ajax call to built URL
-      $.ajax({
-          url: address,
-          //on callback response...
-          success: function(response) {
-              //...save coordinates to address
-              var lat = response.results[0].geometry.location.lat;
-              var lng = response.results[0].geometry.location.lng;
-              console.log(lat);
-              console.log(lng);
-          }
-      })
-  })
-
-
-
-  dataRef.ref().on("child_added", function(childSnapshot) {
-      console.log(childSnapshot.val().petName);
-      // Log everything that's coming out of snapshot
-      console.log(childSnapshot.val().imgURL);
-      console.log(childSnapshot.val().breed);
-      console.log(childSnapshot.val().petName);
-      console.log(childSnapshot.val().petAge);
-      console.log(childSnapshot.val().petDateLost);
-      console.log(childSnapshot.val().firstName);
-      console.log(childSnapshot.val().lastName);
-      console.log(childSnapshot.val().phoneNumber);
-      console.log(childSnapshot.val().email);
-      console.log(childSnapshot.val().comment);
-      console.log(childSnapshot.val().houseNum);
-      console.log(childSnapshot.val().streetName);
-      console.log(childSnapshot.val().city);
-      console.log(childSnapshot.val().state);
-      console.log(childSnapshot.val().zipcode);
-
-      var petDisplay =
-          `<li>
       <div class="collapsible-header petRecord">
         <table>
         <tbody>
@@ -188,85 +195,52 @@
     </li>`;
 
 
-      // full list of items to the well
-      $("#petList").append(petDisplay)
 
-      // Handle the errors
-  }, function(errorObject) {
-      console.log("Errors handled: " + errorObject.code);
+      // full list of items to the well
+      $("#petList").prepend(petDisplay)
+
+
+    // Handle the errors
+  }
+}, function (errorObject) {
+  console.log("Errors handled: " + errorObject.code);
+});
+
+dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
+
+    // Change the HTML to reflect
+    $(".lostDogImage").text(snapshot.val().imgURL);
+    $(".breed-ld").text(snapshot.val().breed);
+    $(".petName-ld").text(snapshot.val().petName);
+    $(".petAge-ld").text(snapshot.val().petAge);
+    $(".petDateLost-ld").text(snapshot.val().petDateLost);
+    $(".contactFirstName-ld").text(snapshot.val().firstName);
+    $(".contactLastName-ld").text(snapshot.val().lastName);
+    $(".phoneNumber-ld").text(snapshot.val().phoneNumber);
+    $(".email-ld").text(snapshot.val().email);
+    $(".comment-ld").text(snapshot.val().comment);
+
+
+
+  } // Handle the errors
+  ,
+  function (errorObject) {
+    console.log("Errors handled: " + errorObject.code);
   });
 
-  dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function(snapshot) {
-
-          // Change the HTML to reflect
-          $(".lostDogImage").text(snapshot.val().imgURL);
-          $(".breed-ld").text(snapshot.val().breed);
-          $(".petName-ld").text(snapshot.val().petName);
-          $(".petAge-ld").text(snapshot.val().petAge);
-          $(".petDateLost-ld").text(snapshot.val().petDateLost);
-          $(".contactFirstName-ld").text(snapshot.val().firstName);
-          $(".contactLastName-ld").text(snapshot.val().lastName);
-          $(".phoneNumber-ld").text(snapshot.val().phoneNumber);
-          $(".email-ld").text(snapshot.val().email);
-          $(".comment-ld").text(snapshot.val().comment);
-
-
-
-      } // Handle the errors
-      ,
-      function(errorObject) {
-          console.log("Errors handled: " + errorObject.code);
-      });
-
-  //Pulls info from form in order to build an apicall URL
-  function FormApiPull(number, name, city, zipcode) {
-      var numSet = number.trim().split(" ").join("+") + ',';
-      var nameSet = name.trim().split(" ").join("+") + ',+';
-      var citySet = city.trim().split(" ").join("+") + ',+';
-      var zipSet = zipcode.trim().split(" ").join("+");
-      address = 'https://maps.googleapis.com/maps/api/geocode/json?address=' +
-          numSet +
-          nameSet +
-          citySet +
-          'NC+' +
-          zipSet +
-          '&key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs';
-      console.log(address);
-      return address;
-  }
-
-  $('document').ready(function name(params) {
-      $('select').material_select();
-      var address = "https://dog.ceo/api/breeds/list"
-      $.ajax({
-          url: address,
-
-          //on callback response...
-          success: function(response) {
-              console.log(response.message);
-
-              //...save coordinates to address
-              // $(".select-dropdown").empty();
-              for (var i = 1; i < response.message.length; i++) {
-                 
-                  var breedDropdown = "<option value='" + response.message[i] + "' id='breedList'>" + response.message[i] + "</option>";
-                  console.log(breedDropdown);
-                   /*
-                  //list.insertAdjacentHTML('beforeend', breedDropdown);
-                  $(".select-dropdown").append(breedDropdown);
-
-
-                 
-                                    var breedOption = $("<option>");
-                                    breedOption.attr("value", response.message[i]);
-                                    breedOption.attr("class", "breedList");
-                                    console.log(breedOption);
-                                    $(".select-dropdown").append(breedOption);
-
-                                    breedOption.text(response.message[i]);
-                                    */
-              }
-
-          }
-      })
-  })
+//Pulls info from form in order to build an apicall URL
+function FormApiPull(number, name, city, zipcode) {
+  var numSet = number.trim().split(" ").join("+") + ',';
+  var nameSet = name.trim().split(" ").join("+") + ',+';
+  var citySet = city.trim().split(" ").join("+") + ',+';
+  var zipSet = zipcode.trim().split(" ").join("+");
+  address = 'https://maps.googleapis.com/maps/api/geocode/json?address=' +
+    numSet +
+    nameSet +
+    citySet +
+    'NC+' +
+    zipSet +
+    '&key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs';
+  console.log(address);
+  return address;
+}

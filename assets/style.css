@@ -56,24 +56,31 @@ h4 {
 	margin: 50px 100px;
 }
 
-
-
-/**/
-
-/*. {
+. {
 	outline: none;
     border-radius: 4px;
     color: white;
     border: none;
     transition: transform 100ms;
+
 }
+
+.dogDataName {
+  width: 80%;
+  display: block;
+   margin: 0 0 10px 10px;
+   /* z-index: 1;
+    position: absolute;*/
+   text-align:center;
+    color: white;
+  }
 
 
 .pet_owner:hover {
 	transform:translateY(8%);
 	filter:brightness(500%);
 }
-*/
+
 .aboutUs {
 	width: 70%;
 	text-align: center;
@@ -90,34 +97,24 @@ h4 {
     color: white;
   }
 
-/*.lostDogImage {
-  width: 30%;
-}*/
-
-/*.lostDogImage td {
-  width: 30%;
-}*/
-
 td {
   padding: 5px;
   text-align: center;
 }
 
-.dogData {
-position: relative;
+.dogDataName {
+width: 90%;
 }
 
 #lostDog {
-  width: 10%;
+  width: 15%;
 }
 
 .importImg {
-  width: 200px;
+  width: 100%;
 }
 
 
-
-
-
-
+.container .abousUs p {
+    position: center;  
 
