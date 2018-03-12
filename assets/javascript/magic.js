@@ -82,7 +82,25 @@ $(document).on("submit", "#entireForm", function (event) {
   var city = "";
   var state = "";
   var zipcode = 0;
+  var number = $('#lostNumAddInput').val();
+  var name = $('#lostNameAddInput').val();
+  var city = $('#lostCityAddInput').val();
+  var zip = $('#lostZipAddInput').val();
+  //call previous sleeping function
+  FormApiPull(number, name, city, zip);
 
+  //ajax call to built URL
+  $.ajax({
+    url: address,
+    //on callback response...
+    success: function (response) {
+      //...save coordinates to address
+      var latLng = response.results[0].geometry.location;
+      console.log(latLng);
+    ;
+
+    }
+  })
 
   breed = $("#petBreedInput").val();
   petName = $("#petNameInput").val().trim();
@@ -122,25 +140,7 @@ $(document).on("submit", "#entireForm", function (event) {
 
   });
 
-  var number = $('#lostNumAddInput').val();
-  var name = $('#lostNameAddInput').val();
-  var city = $('#lostCityAddInput').val();
-  var zip = $('#lostZipAddInput').val();
-  //call previous sleeping function
-  FormApiPull(number, name, city, zip);
 
-  //ajax call to built URL
-  $.ajax({
-    url: address,
-    //on callback response...
-    success: function (response) {
-      //...save coordinates to address
-      var lat = response.results[0].geometry.location.lat;
-      var lng = response.results[0].geometry.location.lng;
-      console.log(lat);
-      console.log(lng);
-    }
-  })
 })
 
 
