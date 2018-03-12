@@ -1,3 +1,8 @@
+
+  // On Ready...
+  $(function() {
+      $('.collapsible').collapsible();
+  });
 // On Ready...
 $(function () {
   $('.collapsible').collapsible();
@@ -239,4 +244,3 @@ function FormApiPull(number, name, city, zipcode) {
   console.log(address);
   return address;
 }
-

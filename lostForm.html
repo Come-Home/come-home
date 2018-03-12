@@ -63,13 +63,92 @@
                     <div class="input-field col s6">
                         <select id="petBreedInput">
                             <option value="" disabled selected>Breed options</option>
-                            <option value="1">Option 1</option>
+                            <option value="affenpinsher" id="breedList">affenpinsher</option>
+                            <option value='african' id='breedList'>african</option>
+<option value='airedale' id='breedList'>airedale</option>
+<option value='akita' id='breedList'>akita</option>
+<option value='appenzeller' id='breedList'>appenzeller</option>
+<option value='basenji' id='breedList'>basenji</option>
+<option value='beagle' id='breedList'>beagle</option>
+<option value='bluetick' id='breedList'>bluetick</option>
+<option value='borzoi' id='breedList'>borzoi</option>
+<option value='bouvier' id='breedList'>bouvier</option>
+<option value='boxer' id='breedList'>boxer</option>
+<option value='brabancon' id='breedList'>brabancon</option>
+<option value='briard' id='breedList'>briard</option>
+<option value='bulldog' id='breedList'>bulldog</option>
+<option value='bullterrier' id='breedList'>bullterrier</option>
+<option value='cairn' id='breedList'>cairn</option>
+<option value='chihuahua' id='breedList'>chihuahua</option>
+<option value='chow' id='breedList'>chow</option>
+<option value='clumber' id='breedList'>clumber</option>
+<option value='collie' id='breedList'>collie</option>
+<option value='coonhound' id='breedList'>coonhound</option>
+<option value='corgi' id='breedList'>corgi</option>
+<option value='dachshund' id='breedList'>dachshund</option>
+<option value='dane' id='breedList'>dane</option>
+<option value='deerhound' id='breedList'>deerhound</option>
+<option value='dhole' id='breedList'>dhole</option>
+<option value='dingo' id='breedList'>dingo</option>
+<option value='doberman' id='breedList'>doberman</option>
+<option value='elkhound' id='breedList'>elkhound</option>
+<option value='entlebucher' id='breedList'>entlebucher</option>
+<option value='eskimo' id='breedList'>eskimo</option>
+<option value='germanshepherd' id='breedList'>germanshepherd</option>
+<option value='greyhound' id='breedList'>greyhound</option>
+<option value='groenendael' id='breedList'>groenendael</option>
+<option value='hound' id='breedList'>hound</option>
+<option value='husky' id='breedList'>husky</option>
+<option value='keeshond' id='breedList'>keeshond</option>
+<option value='kelpie' id='breedList'>kelpie</option>
+<option value='komondor' id='breedList'>komondor</option>
+<option value='kuvasz' id='breedList'>kuvasz</option>
+<option value='labrador' id='breedList'>labrador</option>
+<option value='leonberg' id='breedList'>leonberg</option>
+<option value='lhasa' id='breedList'>lhasa</option>
+<option value='malamute' id='breedList'>malamute</option>
+<option value='malinois' id='breedList'>malinois</option>
+<option value='maltese' id='breedList'>maltese</option>
+<option value='mastiff' id='breedList'>mastiff</option>
+<option value='mexicanhairless' id='breedList'>mexicanhairless</option>
+<option value='mountain' id='breedList'>mountain</option>
+<option value='newfoundland' id='breedList'>newfoundland</option>
+<option value='otterhound' id='breedList'>otterhound</option>
+<option value='papillon' id='breedList'>papillon</option>
+<option value='pekinese' id='breedList'>pekinese</option>
+<option value='pembroke' id='breedList'>pembroke</option>
+<option value='pinscher' id='breedList'>pinscher</option>
+<option value='pointer' id='breedList'>pointer</option>
+<option value='pomeranian' id='breedList'>pomeranian</option>
+<option value='poodle' id='breedList'>poodle</option>
+<option value='pug' id='breedList'>pug</option>
+<option value='pyrenees' id='breedList'>pyrenees</option>
+<option value='redbone' id='breedList'>redbone</option>
+<option value='retriever' id='breedList'>retriever</option>
+<option value='ridgeback' id='breedList'>ridgeback</option>
+<option value='rottweiler' id='breedList'>rottweiler</option>
+<option value='saluki' id='breedList'>saluki</option>
+<option value='samoyed' id='breedList'>samoyed</option>
+<option value='schipperke' id='breedList'>schipperke</option>
+<option value='schnauzer' id='breedList'>schnauzer</option>
+<option value='setter' id='breedList'>setter</option>
+<option value='sheepdog' id='breedList'>sheepdog</option>
+<option value='shiba' id='breedList'>shiba</option>
+<option value='shihtzu' id='breedList'>shihtzu</option>
+<option value='spaniel' id='breedList'>spaniel</option>
+<option value='springer' id='breedList'>springer</option>
+<option value='stbernard' id='breedList'>stbernard</option>
+<option value='terrier' id='breedList'>terrier</option>
+<option value='vizsla' id='breedList'>vizsla</option>
+<option value='weimaraner' id='breedList'>weimaraner</option>
+<option value='whippet' id='breedList'>whippet</option>
+<option value='wolfhound' id='breedList'>wolfhound</option>
                         </select>
-                        <label>Materialize Select</label>
+                        <label for="petBreedLostInput"></label>
                     </div>
                     <div class="input-field col s6">
                         <input id="petDateLostInput" type="date" class="validate">
-                        <label for="petDateLostInput"></label>
+                        
                     </div>
                 </div>
                 <div class="row">
@@ -162,7 +241,7 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs&callback=initMap">
     </script>
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <script type="text/javascript" src="assets/javascript/magic.js"></script>
