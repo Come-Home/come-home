@@ -1,23 +1,6 @@
-
-  // On Ready...
-  $(function() {
-      $('.collapsible').collapsible();
-  });
 // On Ready...
 $(function () {
   $('.collapsible').collapsible();
-
-  // $.ajax({
-  //     url: "address",
-  //     //on callback response...
-  //     success: function(response) {
-  //         //...save coordinates to address
-  //         var lat = response.results[0].geometry.location.lat;
-  //         var lng = response.results[0].geometry.location.lng;
-  //         console.log(lat);
-  //         console.log(lng);
-  //     }
-  // })
 });
 
 // Initialize Firebase
@@ -31,41 +14,41 @@ var config = {
 };
 
 firebase.initializeApp(config);
-  var dataRef = firebase.database();
-  var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dnp117saf/upload";
-  var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
+var dataRef = firebase.database();
+var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dnp117saf/upload";
+var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
 
 
-  var fileUpLoad = $("#fileInput");
-  var imgURL
+var fileUpLoad = $("#fileInput");
+var imgURL
 
-  fileUpLoad.on('change', function(event) {
-      var file = event.target.files[0];
-      console.log(file);
-      var formData = new FormData();
-      formData.append('file', file);
-      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+fileUpLoad.on('change', function (event) {
+  var file = event.target.files[0];
+  console.log(file);
+  var formData = new FormData();
+  formData.append('file', file);
+  formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
-      axios({
-          url: CLOUDINARY_URL,
-          method: "POST",
-          headers: {
-              'Content-Type': 'application/x-www-form-urlencoded'
-          },
-          data: formData
-      }).then(function(response) {
-          imgURL = response.data.url;
-          console.log(response);
-      }).catch(function(error) {
-          console.error(error);
-      });
-
-
-      console.log(fileUpLoad);
-      fileUpLoad.addEventListener('change', function(event) {
-          console.log(event);
-      });
+  axios({
+    url: CLOUDINARY_URL,
+    method: "POST",
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded'
+    },
+    data: formData
+  }).then(function (response) {
+    imgURL = response.data.url;
+    console.log(response);
+  }).catch(function (error) {
+    console.error(error);
   });
+
+
+  console.log(fileUpLoad);
+  fileUpLoad.addEventListener('change', function (event) {
+    console.log(event);
+  });
+});
 
 $(document).on("submit", "#entireForm", function (event) {
   event.preventDefault();
@@ -98,8 +81,7 @@ $(document).on("submit", "#entireForm", function (event) {
     success: function (response) {
       //...save coordinates to address
       var latLng = response.results[0].geometry.location;
-      console.log(latLng);
-    ;
+      console.log(latLng);;
 
     }
   })
@@ -196,8 +178,8 @@ dataRef.ref().on("child_added", function (childSnapshot) {
 
 
 
-      // full list of items to the well
-      $("#petList").prepend(petDisplay)
+    // full list of items to the well
+    $("#petList").prepend(petDisplay)
 
 
     // Handle the errors
