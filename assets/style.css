@@ -14,7 +14,7 @@ body {
  }  
 
 nav a {
-	margin-right: 20px;
+  margin-right: 20px;
   height: 90px;
   float: right;
   text-align: center;
@@ -24,12 +24,12 @@ nav a {
 }
 
 h4 {
-	color: yellow darken-2;
+  color: yellow darken-2;
 }
 
 .side-nav li a {
-	float: none;
-	width: 100%;
+  float: none;
+  width: 100%;
 }
 
 .cards {
@@ -45,57 +45,24 @@ h4 {
 }
 
 .text-contant {
-	text-align: center;
-	background:  #fff8e1;
+  text-align: center;
+  background:  #fff8e1;
 }
 
 
 
 
 .petInfo {
-	margin: 50px 100px;
+  margin: 2% auto;
 }
 
-. {
-	outline: none;
-    border-radius: 4px;
-    color: white;
-    border: none;
-    transition: transform 100ms;
 
+.container .aboutUs {
+  width: 70%;
+  text-align: center;
+  margin-top: 20px;
 }
 
-.dogDataName {
-  width: 80%;
-  display: block;
-   margin: 0 0 10px 10px;
-   /* z-index: 1;
-    position: absolute;*/
-   text-align:center;
-    color: white;
-  }
-
-
-.pet_owner:hover {
-	transform:translateY(8%);
-	filter:brightness(500%);
-}
-
-.aboutUs {
-	width: 70%;
-	text-align: center;
-}
-
-.dogDataName {
-  width: 260px;
-  top: 140px;
-    display: block;
-    margin: 0 0 10px 10px;
-   /* z-index: 1;
-    position: absolute;*/
-   text-align:center;
-    color: white;
-  }
 
 td {
   padding: 5px;
@@ -114,7 +81,18 @@ width: 90%;
   width: 100%;
 }
 
-
 .container .abousUs p {
     position: center;  
+}
 
+.lostDogImage {
+  height: 100% !important; 
+}
+
+.no-margin {
+  margin: 0 !important;
+}
+
+.no-border {
+  border:none !important;
+}
