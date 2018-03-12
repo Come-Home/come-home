@@ -50,6 +50,14 @@ fileUpLoad.on('change', function (event) {
   });
 });
 
+
+
+
+// This function updates a localy stored info in JSON and updates whenever anything changes
+function UpdateSnapshot(snapshot) {
+  json = snapshot.toJSON();
+}
+
 $(document).on("submit", "#entireForm", function (event) {
   event.preventDefault();
 
@@ -97,22 +105,20 @@ $(document).on("submit", "#entireForm", function (event) {
         state: state,
         zipcode: zipcode,
         latLng: latLng,
+
         dateAdded: firebase.database.ServerValue.TIMESTAMP
-
-
       });
     }
   })
-
-
-
 })
-
 
 
 dataRef.ref().on("child_added", function (childSnapshot) {
   if (isPageFoundLostPet) {
 
+    firebase.database().ref().on('value', function (snapshot) {
+      UpdateSnapshot(snapshot);
+    });
 
     // Log everything that's coming out of snapshot
     console.log(childSnapshot.val().petName);
@@ -132,7 +138,7 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val().state);
     console.log(childSnapshot.val().zipcode);
 
-    
+
     var petDisplay =
       `<li>
         <div class="collapsible-header row z-depth-5 no-margin">
@@ -158,7 +164,7 @@ dataRef.ref().on("child_added", function (childSnapshot) {
 
 
     // full list of items to the well
-    $("#petList").prepend(petDisplay);
+    $("#petList").append(petDisplay);
 
     // Handle the errors
   }
