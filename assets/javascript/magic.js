@@ -17,10 +17,10 @@ firebase.initializeApp(config);
 var dataRef = firebase.database();
 var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dnp117saf/upload";
 var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
-
 var isPageFoundLostPet;
 var fileUpLoad = $("#fileInput");
-var imgURL
+var imgURL;
+var json;
 
 fileUpLoad.on('change', function (event) {
   var file = event.target.files[0];
@@ -53,26 +53,8 @@ fileUpLoad.on('change', function (event) {
 $(document).on("submit", "#entireForm", function (event) {
   event.preventDefault();
 
-  var petName = "";
-  var petAge = 0;
-  var petDateLost = 0;
-  var firstName = "";
-  var lastName = "";
-  var phoneNumber = 0;
-  var email = "";
-  var breed = "";
-  var comment = "";
-  var houseNum = 0;
-  var streetName = "";
-  var city = "";
-  var state = "";
-  var zipcode = 0;
-  var number = $('#lostNumAddInput').val();
-  var name = $('#lostNameAddInput').val();
-  var city = $('#lostCityAddInput').val();
-  var zip = $('#lostZipAddInput').val();
-  //call previous sleeping function
-  FormApiPull(number, name, city, zip);
+
+
 
   //ajax call to built URL
   $.ajax({
@@ -86,21 +68,23 @@ $(document).on("submit", "#entireForm", function (event) {
     }
   })
 
-  breed = $("#petBreedInput").val();
-  petName = $("#petNameInput").val().trim();
-  petAge = $("#petAgeInput").val();
-  petDateLost = $("#petDateLostInput").val().trim();
-  firstName = $("#first_name").val().trim();
-  lastName = $("#last_name").val().trim();
-  phoneNumber = $("#icon_telephone").val().trim();
-  email = $("#ownerEmailInput").val().trim();
-  comment = $("#comment").val();
-  houseNum = $("#lostNumAddInput").val().trim();
-  streetName = $("#lostNameAddInput").val().trim();
-  city = $("#lostCityAddInput").val().trim();
-  state = $("#lostStateAddInput").val().trim();
-  zipcode = $("#lostZipAddInput").val().trim();
+  var breed = $("#petBreedInput").val();
+  var petName = $("#petNameInput").val().trim();
+  var petAge = $("#petAgeInput").val();
+  var petDateLost = $("#petDateLostInput").val().trim();
+  var firstName = $("#first_name").val().trim();
+  var lastName = $("#last_name").val().trim();
+  var phoneNumber = $("#icon_telephone").val().trim();
+  var email = $("#ownerEmailInput").val().trim();
+  var comment = $("#comment").val();
+  var houseNum = $("#lostNumAddInput").val().trim();
+  var streetName = $("#lostNameAddInput").val().trim();
+  var city = $("#lostCityAddInput").val().trim();
+  var state = $("#lostStateAddInput").val().trim();
+  var zipcode = $("#lostZipAddInput").val().trim();
 
+  //call previous sleeping function
+  FormApiPull(houseNum, streetName, city, zipcode);
   // Code for the push
   dataRef.ref().push({
 
@@ -119,7 +103,7 @@ $(document).on("submit", "#entireForm", function (event) {
     city: city,
     state: state,
     zipcode: zipcode,
-
+    latLng: latLng,
     dateAdded: firebase.database.ServerValue.TIMESTAMP
 
 
@@ -132,9 +116,7 @@ $(document).on("submit", "#entireForm", function (event) {
 
 dataRef.ref().on("child_added", function (childSnapshot) {
   if (isPageFoundLostPet) {
-
-
-    // Log everything that's coming out of snapshot
+    // Log everything that's coming out of each snapshot
     console.log(childSnapshot.val().petName);
     console.log(childSnapshot.val().imgURL);
     console.log(childSnapshot.val().breed);
@@ -151,6 +133,14 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val().city);
     console.log(childSnapshot.val().state);
     console.log(childSnapshot.val().zipcode);
+    //anytime something changes updates json array
+    dataRef.ref().on('value', function (snapshot) {
+      UpdateSnapshot(snapshot);
+    });
+    // This function updates a localy stored info in JSON and updates whenever anything changes
+    function UpdateSnapshot(snapshot) {
+      json = snapshot.toJSON();
+    }
 
     var petDisplay =
       `<li>
@@ -211,7 +201,7 @@ dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functio
   });
 
 //Pulls info from form in order to build an apicall URL
-function FormApiPull(number, name, city, zipcode) {
+function FormApiPull(houseNum, name, city, zipcode) {
   var numSet = number.trim().split(" ").join("+") + ',';
   var nameSet = name.trim().split(" ").join("+") + ',+';
   var citySet = city.trim().split(" ").join("+") + ',+';
