@@ -53,21 +53,6 @@ fileUpLoad.on('change', function (event) {
 $(document).on("submit", "#entireForm", function (event) {
   event.preventDefault();
 
-
-
-
-  //ajax call to built URL
-  $.ajax({
-    url: address,
-    //on callback response...
-    success: function (response) {
-      //...save coordinates to address
-      var latLng = response.results[0].geometry.location;
-      console.log(latLng);;
-
-    }
-  })
-
   var breed = $("#petBreedInput").val();
   var petName = $("#petNameInput").val().trim();
   var petAge = $("#petAgeInput").val();
@@ -82,32 +67,43 @@ $(document).on("submit", "#entireForm", function (event) {
   var city = $("#lostCityAddInput").val().trim();
   var state = $("#lostStateAddInput").val().trim();
   var zipcode = $("#lostZipAddInput").val().trim();
-
+  var latLng;
   //call previous sleeping function
   FormApiPull(houseNum, streetName, city, zipcode);
-  // Code for the push
-  dataRef.ref().push({
+  //ajax call to built URL
+  $.ajax({
+    url: address,
+    //on callback response...
+    success: function (response) {
+      //...save coordinates to address
+      latLng = response.results[0].geometry.location;
+      console.log(latLng);;
+      // Code for the push
+      dataRef.ref().push({
 
-    imgURL: imgURL,
-    breed: breed,
-    petName: petName,
-    petAge: petAge,
-    petDateLost: petDateLost,
-    firstName: firstName,
-    lastName: lastName,
-    phoneNumber: phoneNumber,
-    email: email,
-    comment: comment,
-    houseNum: houseNum,
-    streetName: streetName,
-    city: city,
-    state: state,
-    zipcode: zipcode,
-    latLng: latLng,
-    dateAdded: firebase.database.ServerValue.TIMESTAMP
+        imgURL: imgURL,
+        breed: breed,
+        petName: petName,
+        petAge: petAge,
+        petDateLost: petDateLost,
+        firstName: firstName,
+        lastName: lastName,
+        phoneNumber: phoneNumber,
+        email: email,
+        comment: comment,
+        houseNum: houseNum,
+        streetName: streetName,
+        city: city,
+        state: state,
+        zipcode: zipcode,
+        latLng: latLng,
+        dateAdded: firebase.database.ServerValue.TIMESTAMP
 
 
-  });
+      });
+    }
+  })
+
 
 
 })
@@ -201,7 +197,7 @@ dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", functio
   });
 
 //Pulls info from form in order to build an apicall URL
-function FormApiPull(houseNum, name, city, zipcode) {
+function FormApiPull(number, name, city, zipcode) {
   var numSet = number.trim().split(" ").join("+") + ',';
   var nameSet = name.trim().split(" ").join("+") + ',+';
   var citySet = city.trim().split(" ").join("+") + ',+';
