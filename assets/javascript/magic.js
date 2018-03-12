@@ -68,26 +68,26 @@ fileUpLoad.on('change', function (event) {
 $(document).on("submit", "#entireForm", function (event) {
   event.preventDefault();
 
-  var petName = "";
-  var petAge = 0;
-  var petDateLost = 0;
-  var firstName = "";
-  var lastName = "";
-  var phoneNumber = 0;
-  var email = "";
-  var breed = "";
-  var comment = "";
-  var houseNum = 0;
-  var streetName = "";
-  var city = "";
-  var state = "";
-  var zipcode = 0;
-  var number = $('#lostNumAddInput').val();
-  var name = $('#lostNameAddInput').val();
-  var city = $('#lostCityAddInput').val();
-  var zip = $('#lostZipAddInput').val();
+
+
+
+  var breed = $("#petBreedInput").val();
+  var petName = $("#petNameInput").val().trim();
+  var petAge = $("#petAgeInput").val();
+  var petDateLost = $("#petDateLostInput").val().trim();
+  var firstName = $("#first_name").val().trim();
+  var lastName = $("#last_name").val().trim();
+  var phoneNumber = $("#icon_telephone").val().trim();
+  var email = $("#ownerEmailInput").val().trim();
+  var comment = $("#comment").val();
+  var houseNum = $("#lostNumAddInput").val().trim();
+  var streetName = $("#lostNameAddInput").val().trim();
+  var city = $("#lostCityAddInput").val().trim();
+  var state = $("#lostStateAddInput").val().trim();
+  var zipcode = $("#lostZipAddInput").val().trim();
+  var latLng;
   //call previous sleeping function
-  FormApiPull(number, name, city, zip);
+  FormApiPull(houseNum, streetName, city, zipcode);
 
   //ajax call to built URL
   $.ajax({
@@ -95,27 +95,11 @@ $(document).on("submit", "#entireForm", function (event) {
     //on callback response...
     success: function (response) {
       //...save coordinates to address
-      var latLng = response.results[0].geometry.location;
-      console.log(latLng);
-    ;
+      latLng = response.results[0].geometry.location;
+      console.log(latLng);;
 
     }
   })
-
-  breed = $("#petBreedInput").val();
-  petName = $("#petNameInput").val().trim();
-  petAge = $("#petAgeInput").val();
-  petDateLost = $("#petDateLostInput").val().trim();
-  firstName = $("#first_name").val().trim();
-  lastName = $("#last_name").val().trim();
-  phoneNumber = $("#icon_telephone").val().trim();
-  email = $("#ownerEmailInput").val().trim();
-  comment = $("#comment").val();
-  houseNum = $("#lostNumAddInput").val().trim();
-  streetName = $("#lostNameAddInput").val().trim();
-  city = $("#lostCityAddInput").val().trim();
-  state = $("#lostStateAddInput").val().trim();
-  zipcode = $("#lostZipAddInput").val().trim();
 
   // Code for the push
   dataRef.ref().push({
