@@ -26,44 +26,41 @@ var config = {
 };
 
 firebase.initializeApp(config);
+  var dataRef = firebase.database();
+  var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dnp117saf/upload";
+  var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
 
-var dataRef = firebase.database();
-var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dnp117saf/upload";
-var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
 
-var isPageFoundLostPet;
-var fileUpLoad = $("#fileInput");
-var imgURL;
+  var fileUpLoad = $("#fileInput");
+  var imgURL
 
-fileUpLoad.on('change', function (event) {
-  var file = event.target.files[0];
-  console.log(file);
-  var formData = new FormData();
-  formData.append('file', file);
-  formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
+  fileUpLoad.on('change', function(event) {
+      var file = event.target.files[0];
+      console.log(file);
+      var formData = new FormData();
+      formData.append('file', file);
+      formData.append('upload_preset', CLOUDINARY_UPLOAD_PRESET);
 
-  axios({
-    url: CLOUDINARY_URL,
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/x-www-form-urlencoded'
-    },
-    data: formData
-  }).then(function (response) {
-    imgURL = response.data.url;
-    console.log(response);
-  }).catch(function (error) {
-    console.error(error);
+      axios({
+          url: CLOUDINARY_URL,
+          method: "POST",
+          headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+          },
+          data: formData
+      }).then(function(response) {
+          imgURL = response.data.url;
+          console.log(response);
+      }).catch(function(error) {
+          console.error(error);
+      });
+
+
+      console.log(fileUpLoad);
+      fileUpLoad.addEventListener('change', function(event) {
+          console.log(event);
+      });
   });
-
-  console.log(fileUpLoad);
-  fileUpLoad.addEventListener('change', function (event) {
-    console.log(event);
-  });
-})
-
-
-
 
 $(document).on("submit", "#entireForm", function (event) {
   event.preventDefault();
@@ -138,6 +135,7 @@ $(document).on("submit", "#entireForm", function (event) {
 
     dateAdded: firebase.database.ServerValue.TIMESTAMP
 
+
   });
 
 
@@ -169,6 +167,7 @@ dataRef.ref().on("child_added", function (childSnapshot) {
 
     var petDisplay =
       `<li>
+
       <div class="collapsible-header petRecord">
         <table>
         <tbody>
@@ -191,8 +190,10 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     </li>`;
 
 
-    // full list of items to the well
-    $("#petList").append(petDisplay)
+
+      // full list of items to the well
+      $("#petList").prepend(petDisplay)
+
 
     // Handle the errors
   }
@@ -238,3 +239,4 @@ function FormApiPull(number, name, city, zipcode) {
   console.log(address);
   return address;
 }
+
