@@ -18,7 +18,7 @@ var dataRef = firebase.database();
 var CLOUDINARY_URL = "https://api.cloudinary.com/v1_1/dnp117saf/upload";
 var CLOUDINARY_UPLOAD_PRESET = 'btj61uny';
 
-
+var isPageFoundLostPet;
 var fileUpLoad = $("#fileInput");
 var imgURL
 
