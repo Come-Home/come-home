@@ -25,53 +25,40 @@
         </div>
     </nav>
     <!-- lost pets info -->
-    <div class="container petInfo z-depth-5 ">
-          <ul class="collapsible" id="petList" data-collapsible="accordion">
+    <div class="container petInfo z-depth-5">
+        <ul class="collapsible" id="petList" data-collapsible="accordion">
             <li>
                 <div class="collapsible-header petRecord">
                     <div class="row">
                         <div class="lostDogImage col s2">
                             <img class="responsive-img z-depth-3 lostDogImage" src="assets/images/puppy.jpg" />
                         </div>
-                       
                         <div class="petName-ld col s1">Name</div>
-                        
                         <div class="breed-ld col s1">Breed</div>
-                        
                         <div class="petAge-ld col s2">2<span> years old</span></div>
-                       
                         <div class="petDateLost-ld col s2"><span>Date Lost: </span>01/01/2018</div>
-                        
                         <div class="comment-ld col s2">Comment</div>
-                        
                         <div class="lostDogMap col s2">
                             <button class="light-green darken-3 white-text">Location</button>
                         </div>
                     </div>
-                  </div>
-                    <!-- <div class="row">
+                </div>
+                <!-- <div class="row">
                     <div class="petOwner col s2"> 
                       <button class="light-green darken-3 white-text">Click to see the owner</button>
                     </div>
                   </div> -->
-                    <div class="collapsible-body ownerRecord">
-                        <div class="row">
-                            <div class="contactFirstName-ld col s3">First Name</div>
-                        </div>
-                        <div class="row">
-                            <div class="contactLastName-ld col s3">Last Name</div>
-                        </div>
-                        <div class="row">
-                            <div class="phoneNumber-ld col s3">phone</div>
-                        </div>
-                        <div class="row">
-                            <div class="email-ld col s3">email</div>
-                        </div>
+                <div class="collapsible-body ownerRecord">
+                    <div class="row">
+                        <div class="contactFirstName-ld col s3">First Name</div>
+                        <div class="contactLastName-ld col s3">Last Name</div>
+                        <div class="phoneNumber-ld col s3">phone</div>
+                        <div class="email-ld col s3">email</div>
                     </div>
                 </div>
             </li>
         </ul>
-      </div>
+    </div>
     <script>
     $(document).ready(function() {
         $('.collapsible').collapsible();
