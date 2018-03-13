@@ -1,3 +1,4 @@
+
 // On Ready...
 $(function () {
   $('.collapsible').collapsible();
@@ -60,6 +61,8 @@ function UpdateSnapshot(snapshot) {
 
 $(document).on("submit", "#entireForm", function (event) {
   event.preventDefault();
+
+  
 
   var breed = $("#petBreedInput").val();
   var petName = $("#petNameInput").val().trim();
