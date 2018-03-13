@@ -116,9 +116,6 @@ $(document).on("submit", "#entireForm", function (event) {
 dataRef.ref().on("child_added", function (childSnapshot) {
   if (isPageFoundLostPet) {
 
-    firebase.database().ref().on('value', function (snapshot) {
-      UpdateSnapshot(snapshot);
-    });
 
     // Log everything that's coming out of snapshot
     console.log(childSnapshot.val().petName);
@@ -164,7 +161,7 @@ dataRef.ref().on("child_added", function (childSnapshot) {
 
 
     // full list of items to the well
-    $("#petList").append(petDisplay);
+    $("#petList").prepend(petDisplay);
 
     // Handle the errors
   }
