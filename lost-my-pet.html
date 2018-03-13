@@ -7,10 +7,10 @@
   <title>Come Home</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
   <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
-  <script src=“https://www.gstatic.com/firebasejs/4.10.1/firebase.js“></script>
-  <script src="assets/javascript/magic.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>
+  <script src="assets/javascript/shelters.js"></script>
 
   <head>
     <style>
@@ -27,24 +27,45 @@
     <script>
       function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 10,
+          zoom: 9,
           center: {
             lat: 35.7796,
-            lng: -78.6382
+            lng: -78.6382,
           },
           gestureHandling: 'none',
-          zoomControl: false
+          zoomControl: false,
+          mapTypeId: google.maps.MapTypeId.ROADMAP
         });
-      }
-      function placeMarkerAndPanTo(latLng, map) {
-        var marker = new google.maps.Marker({
-          position: latLng,
-          map: map
-        });
+        var locations = [
+          ['Title A', 35.770967, -78.635546, 1],
+          ['Title B', 3.200848, 101.616669, 2],
+          ['Title C', 3.147372, 101.597443, 3],
+          ['Title D', 3.19125, 101.710052, 4]
+        ];
+        var infowindow = new google.maps.InfoWindow;
+
+        var marker, i;
+
+        for (i = 0; i < locations.length; i++) {
+          marker = new google.maps.Marker({
+            position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+            map: map
+          });
+
+          google.maps.event.addListener(marker, 'click', (function (marker, i) {
+            return function () {
+              infowindow.setContent(locations[i][0]);
+              infowindow.open(map, marker);
+            }
+          })(marker, i));
+        }
       }
     </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs&callback=initMap">
     </script>
+
+
   </body>
+
 
 </html>

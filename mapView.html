@@ -37,6 +37,8 @@
         <div class="row">
             <h4>What Should I Do if I found a Lost Pet that is not on this Site.</h4>
             <p class="flow-text">Bring it to a shelter. Here are the shelters near you!</p>
+        </div>
+        <div id="map"></div>
             <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
             <script src=“https://www.gstatic.com/firebasejs/4.10.1/firebase.js“></script>
@@ -48,7 +50,20 @@
                 $(".button-collapse").sideNav();
             })
             </script>
-            <!-- <script src="assets/javascript/magic.js"></script> -->
+            <script src="assets/javascript/shelters.js"></script>
+            <script>
+function initMap() {
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 7,
+    center: {
+      latLng
+    },
+    gestureHandling: 'none',
+    zoomControl: false
+  });
+}
+</script>
+            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs&callback=initMap"></script>
 </body>
 
 </html>
