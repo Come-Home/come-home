@@ -81,9 +81,7 @@
       $(document).ready(function () {
         $(".button-collapse").sideNav();
       })
-    </script>
 
-    <script>
         function initMap() {
           var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 9,
@@ -95,6 +93,9 @@
             zoomControl: false,
             mapTypeId: google.maps.MapTypeId.ROADMAP
           });
+          
+          var infowindow = new google.maps.InfoWindow;
+          var marker, i;
           var locations = [
             ["Wake County Animal Center", 35.7918696, -78.571863, 1],
             ["Orange County Animal Services", 35.9687307, -79.0758985, 2],
@@ -115,9 +116,7 @@
             ["Pasture Pals Equine Rescue", 35.5559161, -78.4133059, 16],
             ["Saving Pets One At A Time(S.P.O.T.Rescue)", 35.767046, -78.698207, 17]
           ];
-          var infowindow = new google.maps.InfoWindow;
 
-          var marker, i;
 
           for (i = 0; i < locations.length; i++) {
             marker = new google.maps.Marker({

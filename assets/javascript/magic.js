@@ -172,27 +172,6 @@ dataRef.ref().on("child_added", function (childSnapshot) {
   console.log("Errors handled: " + errorObject.code);
 });
 
-dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
-
-    // Change the HTML to reflect
-    $(".lostDogImage").text(snapshot.val().imgURL);
-    $(".breed-ld").text(snapshot.val().breed);
-    $(".petName-ld").text(snapshot.val().petName);
-    $(".petAge-ld").text(snapshot.val().petAge);
-    $(".petDateLost-ld").text(snapshot.val().petDateLost);
-    $(".contactFirstName-ld").text(snapshot.val().firstName);
-    $(".contactLastName-ld").text(snapshot.val().lastName);
-    $(".phoneNumber-ld").text(snapshot.val().phoneNumber);
-    $(".email-ld").text(snapshot.val().email);
-    $(".comment-ld").text(snapshot.val().comment);
-
-
-
-  } // Handle the errors
-  ,
-  function (errorObject) {
-    console.log("Errors handled: " + errorObject.code);
-  });
 
 //Pulls info from form in order to build an apicall URL
 function FormApiPull(number, name, city, zipcode) {
