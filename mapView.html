@@ -2,68 +2,139 @@
 <html>
 
 <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Come Home</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
-    <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Come Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+  <script src=“https://www.gstatic.com/firebasejs/4.10.1/firebase.js“></script>
+  <script src="assets/javascript/shelters.js"></script>
+      <style>
+        #map {
+          height: 400px;
+          width: 70%;
+        }
+      </style>
 </head>
 
 <body>
-    <nav class="nav-extended">
-        <div class="nav-wrapper light-green darken-3">
-            <a href="index.html" class="brand-logo">Come Home</a>
-            <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
-            <ul id="nav-mobile" class="right hide-on-med-and-down">
-                <li><a href="lostForm.html">Report a lost pet</a></li>
-                <li><a href="lostList.html">Found a lost pet</a></li>
-                <li><a href="breedType">Breeds</a></li>
-                <li><a href="MapView.html">Map</a></li>
-                <li><a href="aboutUs.html">About Us</a></li>
-            </ul>
-            <ul class="side-nav orange lighten-5" id="mobile-demo">
-                <li><a href="index.html">Come Home</a></li>
-                <li><a href="lostForm.html">Report a lost pet</a></li>
-                <li><a href="lostList.html">Found a lost pet</a></li>
-                <li><a href="breedType">Breeds</a></li>
-                <li><a href="MapView.html">Map</a></li>
-                <li><a href="aboutUs.html">About Us</a></li>
-            </ul>
-        </div>
-    </nav>
-    <div class="container white">
-        <div class="row">
-            <h4>What Should I Do if I found a Lost Pet that is not on this Site.</h4>
-            <p class="flow-text">Bring it to a shelter. Here are the shelters near you!</p>
-        </div>
-        <div id="map"></div>
-            <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-            <script src=“https://www.gstatic.com/firebasejs/4.10.1/firebase.js“></script>
-            <script type="text/javascript">
-            $(document).ready(function() {
-                $("select").material_select();
-            })
-            $(document).ready(function() {
-                $(".button-collapse").sideNav();
-            })
-            </script>
-            <script src="assets/javascript/shelters.js"></script>
-            <script>
-function initMap() {
-  var map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 7,
-    center: {
-      latLng
-    },
-    gestureHandling: 'none',
-    zoomControl: false
-  });
-}
-</script>
-            <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs&callback=initMap"></script>
+  <nav class="nav-extended">
+    <div class="nav-wrapper light-green darken-3">
+      <a href="index.html" class="brand-logo">Come Home</a>
+      <a href="#" data-activates="mobile-demo" class="button-collapse">
+        <i class="material-icons">menu</i>
+      </a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li>
+          <a href="lostForm.html">Report a lost pet</a>
+        </li>
+        <li>
+          <a href="lostList.html">Found a lost pet</a>
+        </li>
+        <li>
+          <a href="breedType">Breeds</a>
+        </li>
+        <li>
+          <a href="MapView.html">Map</a>
+        </li>
+        <li>
+          <a href="aboutUs.html">About Us</a>
+        </li>
+      </ul>
+      <ul class="side-nav orange lighten-5" id="mobile-demo">
+        <li>
+          <a href="index.html">Come Home</a>
+        </li>
+        <li>
+          <a href="lostForm.html">Report a lost pet</a>
+        </li>
+        <li>
+          <a href="lostList.html">Found a lost pet</a>
+        </li>
+        <li>
+          <a href="breedType">Breeds</a>
+        </li>
+        <li>
+          <a href="MapView.html">Map</a>
+        </li>
+        <li>
+          <a href="aboutUs.html">About Us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container white">
+    <div class="row">
+      <h4>What Should I Do if I found a Lost Pet that is not on this Site.</h4>
+      <p class="flow-text">Bring it to a shelter. Here are the shelters near you!</p>
+    </div>
+    <div id="map"></div>
+   
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $("select").material_select();
+      })
+      $(document).ready(function () {
+        $(".button-collapse").sideNav();
+      })
+    </script>
+
+    <script>
+        function initMap() {
+          var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 9,
+            center: {
+              lat: 35.7796,
+              lng: -78.6382,
+            },
+            gestureHandling: 'none',
+            zoomControl: false,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+          });
+          var locations = [
+            ["Wake County Animal Center", 35.7918696, -78.571863, 1],
+            ["Orange County Animal Services", 35.9687307, -79.0758985, 2],
+            ["Snowflake Animal Rescue Foundation", 35.8991678, -78.8636401, 3],
+            ["Animal Protection Society of Durham", 36.0264132, -78.8562843, 4],
+            ["Harnett County Animal Control", 35.3944811, -78.79924869999999, 5],
+            ["Carolina Animal Rescue & Adoption", 35.552813, -79.18923199999999,],
+            ["Safe Haven For Cats", 35.895083, -78.56969830000001, 6],
+            ["Animal Protection Society", 35.9383376, -79.0567811, 7],
+            ["Second Chance Pet Adoptions", 35.7886696, -78.724809, 8],
+            ["Positioning Animals Worldwide Inc.", 35.7419923, -78.7765652, 9],
+            ["Johnston County Animal Protection League", 35.5079824, -78.3402405, 10],
+            ["Cat Angels Pet Adoptions Inc", 35.8013357, -78.7847922, 11],
+            ["Johnston County Animal Control", 35.518957, -78.307418, 12],
+            ["SPCA of Wake County", 35.7280366, -78.6619525, 13],
+            ["Ruf Creek Ranch Animal Rescue and Adoption Center", 35.45164250000001, -78.2822963, 14],
+            ["Animall", 35.7724764, -78.76101109999999, 15],
+            ["Pasture Pals Equine Rescue", 35.5559161, -78.4133059, 16],
+            ["Saving Pets One At A Time(S.P.O.T.Rescue)", 35.767046, -78.698207, 17]
+          ];
+          var infowindow = new google.maps.InfoWindow;
+
+          var marker, i;
+
+          for (i = 0; i < locations.length; i++) {
+            marker = new google.maps.Marker({
+              position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+              map: map
+            });
+
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+              return function () {
+                infowindow.setContent(locations[i][0]);
+                infowindow.open(map, marker);
+              }
+            })(marker, i));
+          }
+        }
+    </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs&callback=initMap"></script>
 </body>
 
 </html>
