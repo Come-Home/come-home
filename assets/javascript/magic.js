@@ -113,8 +113,11 @@ $(document).on("submit", "#entireForm", function (event) {
         zipcode: zipcode,
         latLng: latLng,
 
-        dateAdded: firebase.database.ServerValue.TIMESTAMP
+        dateAdded: firebase.database.ServerValue.TIMESTAMP,
+
+        
       });
+      location = "https://come-home.github.io/come-home/lostList.html";
     }
   })
 })
