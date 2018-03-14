@@ -14,7 +14,7 @@
     <!-- navigation bar -->
     <nav>
         <div class="nav-wrapper light-green darken-3">
-            <a href="#" class="brand-logo">Come Home</a>
+            <a href="index.html" class="brand-logo">Come Home</a>
             <ul id="nav-mobile" class="right hide-on-med-and-down">
                 <li><a href="lostForm.html">Report a lost pet</a></li>
                 <li><a href="lostList.html">Found a lost pet</a></li>
@@ -26,22 +26,27 @@
                 <li><a href="index.html">Come Home</a></li>
                 <li><a href="lostForm.html">Report a lost pet</a></li>
                 <li><a href="lostList.html">Found a lost pet</a></li>
-                <li><a href="breedType">Breeds</a></li>
+                <li><a href="breedType.html">Breeds</a></li>
                 <li><a href="mapView.html">Map</a></li>
                 <li><a href="AboutUs.html">About Us</a></li>
             </ul>
         </div>
     </nav>
     <!-- lost pets info -->
+    
     <div class="container petInfo z-depth-5 ">
+
         <ul class="collapsible" id="petList" data-collapsible="accordion">
             
         </ul>
     </div>
+    <div id="map"></div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/live/3.0/firebase.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs&callback=initMap"
+    async defer></script>
     <script src="assets/javascript/magic.js"></script>
     <script>
     isPageFoundLostPet = true;

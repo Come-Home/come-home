@@ -2,6 +2,10 @@
 // On Ready...
 $(function () {
   $('.collapsible').collapsible();
+    map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
 });
 
 // Initialize Firebase
@@ -144,13 +148,12 @@ dataRef.ref().on("child_added", function (childSnapshot) {
         <div class="collapsible-header row z-depth-5 no-margin">
 
           <img class="boldListElement responsive-img col s2 lostDogImage z-depth-5" src="${childSnapshot.val().imgURL}"/>
-          <div class="boldListElement petName-ld col s1">${childSnapshot.val().petName}</div>
-          <div class="boldListElement breed-ld col s1">${childSnapshot.val().breed}</div>
+          <div class="boldListElement petName-ld col s2">${childSnapshot.val().petName}</div>
+          <div class="boldListElement breed-ld col s2">${childSnapshot.val().breed}</div>
           <div class="boldListElement petAge-ld col s2">${childSnapshot.val().petAge} years old</div> 
           <div class="boldListElement petDateLost-ld col s2"><span>Date last seen: </span></br>${childSnapshot.val().petDateLost}</div>
           <div class="boldListElement comment-ld col s2">${childSnapshot.val().comment}</div>
-          <div class= "boldListElement lostDogMap col s2"><button class="light-green darken-3 white-text">Location</button></div>
-
+          
         </div>
         <div class="collapsible-body row no-border">
 
@@ -171,6 +174,14 @@ dataRef.ref().on("child_added", function (childSnapshot) {
 }, function (errorObject) {
   console.log("Errors handled: " + errorObject.code);
 });
+
+var map;
+function initMap() {
+  map = new google.maps.Map(document.getElementById('map'), {
+    center: {lat: -34.397, lng: 150.644},
+    zoom: 8
+  });
+}
 
 //Pulls info from form in order to build an apicall URL
 function FormApiPull(number, name, city, zipcode) {
