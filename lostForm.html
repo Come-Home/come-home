@@ -9,14 +9,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
     <link rel="stylesheet" type="text/css" media="screen" href="assets/style.css" />
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style>
-    #map {
-        height: 400px;
-        width: 70%;
-        margin-bottom: 5%;
-    }
-    </style>
-</head>
+
 
 <body>
     <nav class="nav-extended">
@@ -44,7 +37,7 @@
         <div class="row">
             <h5>Dog Info</h5> Select image of your dog to upload:
             <input type="file" id="fileInput">
-            <input class="btn waves-effect waves-light yellow darken-2" id="submitImage" type="submit" value="Upload Image" name="submit">
+          
             </form>
         </div>
         <div class="row">
@@ -203,8 +196,6 @@
                         <label for="lostZipAddInput">Zip Code</label>
                     </div>
                 </div>
-                <h5>Map View</h5>
-                <div id="map"></div>
                 <div class="row">
                     <button class="btn waves-effect waves-light yellow darken-2" id="submit" type="submit" name="action">Submit
                         <i class="material-icons right">send</i>
@@ -213,31 +204,7 @@
             </form>
         </div>
     </div>
-    <script>
-    function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 10,
-            center: {
-                lat: 35.7796,
-                lng: -78.6382
-            },
-            gestureHandling: 'none',
-            zoomControl: false
 
-        });
-
-        map.addListener('click', function(e) {
-            placeMarkerAndPanTo(e.latLng, map);
-        });
-    }
-
-    function placeMarkerAndPanTo(latLng, map) {
-        var marker = new google.maps.Marker({
-            position: latLng,
-            map: map
-        });
-    }
-    </script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCF_LnSPL7yY5VIDbPCbBo9e03StuCuTTs&callback=initMap">
     </script>
     <script src="https://www.gstatic.com/firebasejs/4.10.1/firebase.js"></script>

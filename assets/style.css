@@ -3,7 +3,6 @@ body {
 }
 
 
-
  .brand-logo{
   width: 250px;
   float: left;
@@ -73,11 +72,11 @@ td {
 .dogDataName {
 width: 90%;
 }
-
+/*
 #lostDog {
   width: 15%;
 }
-
+*/
 .importImg {
   height:250px !important;
   width:100%;
