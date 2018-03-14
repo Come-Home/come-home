@@ -120,7 +120,7 @@ $(document).on("submit", "#entireForm", function (event) {
       location = "https://come-home.github.io/come-home/lostList.html";
     }
   })
-})
+}) 
 
 
 dataRef.ref().on("child_added", function (childSnapshot) {
