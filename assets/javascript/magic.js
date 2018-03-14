@@ -139,25 +139,25 @@ dataRef.ref().on("child_added", function (childSnapshot) {
     console.log(childSnapshot.val().zipcode);
 
 
-    var petDisplay =
-      `<li>
+        var petDisplay =
+            `<li>
         <div class="collapsible-header row z-depth-5 no-margin">
 
-          <img class="responsive-img col s2 lostDogImage z-depth-5" src="${childSnapshot.val().imgURL}"/>
-          <div class="petName-ld col s1">${childSnapshot.val().petName}</div>
-          <div class="breed-ld col s1">${childSnapshot.val().breed}</div>
-          <div class="petAge-ld col s2">${childSnapshot.val().petAge}</div>
-          <div class="petDateLost-ld col s2">${childSnapshot.val().petDateLost}</div>
-          <div class="comment-ld col s2">${childSnapshot.val().comment}</div>
-          <div class= "lostDogMap col s2"><button class="light-green darken-3 white-text ">Location</button></div>
+          <img class="boldListElement responsive-img col s2 lostDogImage z-depth-5" src="${childSnapshot.val().imgURL}"/>
+          <div class="boldListElement petName-ld col s1">${childSnapshot.val().petName}</div>
+          <div class="boldListElement breed-ld col s1">${childSnapshot.val().breed}</div>
+          <div class="boldListElement petAge-ld col s2">${childSnapshot.val().petAge} years old</div> 
+          <div class="boldListElement petDateLost-ld col s2"><span>Date last seen: </span></br>${childSnapshot.val().petDateLost}</div>
+          <div class="boldListElement comment-ld col s2">${childSnapshot.val().comment}</div>
+          <div class= "boldListElement lostDogMap col s2"><button class="light-green darken-3 white-text">Location</button></div>
 
         </div>
         <div class="collapsible-body row no-border">
 
-          <div class="contactFirstName-ld col s3">${childSnapshot.val().firstName}</div>
-          <div class="contactLastName-ld col s3">${childSnapshot.val().lastName}</div>
-          <div class="phoneNumber-ld col s3">${childSnapshot.val().phoneNumber}</div>
-          <div class="email-ld col s3">${childSnapshot.val().email}</div>
+          <div class="boldListElement contactFirstName-ld col s3">${childSnapshot.val().firstName}</div>
+          <div class="boldListElement contactLastName-ld col s3">${childSnapshot.val().lastName}</div>
+          <div class="boldListElement phoneNumber-ld col s3">${childSnapshot.val().phoneNumber}</div>
+          <div class="boldListElement email-ld col s3">${childSnapshot.val().email}</div>
 
         </div>
       </li>`
@@ -172,27 +172,27 @@ dataRef.ref().on("child_added", function (childSnapshot) {
   console.log("Errors handled: " + errorObject.code);
 });
 
-dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
+// dataRef.ref().orderByChild("dateAdded").limitToLast(1).on("child_added", function (snapshot) {
 
-    // Change the HTML to reflect
-    $(".lostDogImage").text(snapshot.val().imgURL);
-    $(".breed-ld").text(snapshot.val().breed);
-    $(".petName-ld").text(snapshot.val().petName);
-    $(".petAge-ld").text(snapshot.val().petAge);
-    $(".petDateLost-ld").text(snapshot.val().petDateLost);
-    $(".contactFirstName-ld").text(snapshot.val().firstName);
-    $(".contactLastName-ld").text(snapshot.val().lastName);
-    $(".phoneNumber-ld").text(snapshot.val().phoneNumber);
-    $(".email-ld").text(snapshot.val().email);
-    $(".comment-ld").text(snapshot.val().comment);
+//     // Change the HTML to reflect
+//     $(".lostDogImage").text(snapshot.val().imgURL);
+//     $(".breed-ld").text(snapshot.val().breed);
+//     $(".petName-ld").text(snapshot.val().petName);
+//     $(".petAge-ld").text(snapshot.val().petAge);
+//     $(".petDateLost-ld").text(snapshot.val().petDateLost);
+//     $(".contactFirstName-ld").text(snapshot.val().firstName);
+//     $(".contactLastName-ld").text(snapshot.val().lastName);
+//     $(".phoneNumber-ld").text(snapshot.val().phoneNumber);
+//     $(".email-ld").text(snapshot.val().email);
+//     $(".comment-ld").text(snapshot.val().comment);
 
 
 
-  } // Handle the errors
-  ,
-  function (errorObject) {
-    console.log("Errors handled: " + errorObject.code);
-  });
+//   } // Handle the errors
+//   ,
+//   function (errorObject) {
+//     console.log("Errors handled: " + errorObject.code);
+//   });
 
 //Pulls info from form in order to build an apicall URL
 function FormApiPull(number, name, city, zipcode) {

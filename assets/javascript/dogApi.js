@@ -27,9 +27,9 @@ function CreateBreedList(breed, i) {
       //...find picture of the new breed...
       picture = response.message[0];
       //...build structure...
-      var spawnBreedRow = "<div class='dogData col s6 m4 l3'>" +
-        "<img class='importImg' src='" + picture + "' alt='Photo" + i + "'>" +
-        "<p class='dogDataName light-green darken-3 white-text'>" + breed + "</p>" +
+      var spawnBreedRow = "<div class='dogData col s12 m6 l3'>" +
+        "<img class='responsive-img importImg' src='" + picture + "' alt='Photo" + i + "'>" +
+        "<p class='dogDataName light-green darken-3 center white-text'>" + breed + "</p>" +
         "</div>";
       //..and finally apppend each breed...
       div = document.getElementById('breedContainer');
