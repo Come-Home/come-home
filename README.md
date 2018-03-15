@@ -1,3 +1,3 @@
-# Come-home   \
+# Come-home   
 
-hello, there
+Deployed at: come-home.github.io/come-home/
